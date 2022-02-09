@@ -1,0 +1,17 @@
+# WARNING: this file is not suitable for production, please use with caution
+version: '3'
+
+services:
+  web:
+    image: abarrotes_api_rest
+    build: .
+    command: flask run -h 0.0.0.0
+    env_file:
+      - ./.flaskenv
+    environment:
+      - DATABASE_URI=sqlite:////db/abarrotes_api_rest.db
+    volumes:
+      - ./abarrotes_api_rest:/code/abarrotes_api_rest
+      - ./db/:/db/
+    ports:
+      - "5000:5000"
