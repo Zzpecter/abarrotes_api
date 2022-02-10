@@ -7,8 +7,8 @@ from flask_jwt_extended import (
     get_jwt,
 )
 
-from abarrotes_api_rest.models import User
-from abarrotes_api_rest.extensions import pwd_context, jwt, apispec
+from abarrotes_api_rest.models import Usuario
+from abarrotes_api_rest.extensions import pwd_context, jwt
 from abarrotes_api_rest.auth.helpers import revoke_token, is_token_revoked, add_token_to_database
 
 
@@ -17,59 +17,24 @@ blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 
 @blueprint.route("/login", methods=["POST"])
 def login():
-    """Authenticate user and return tokens
-
-    ---
-    post:
-      tags:
-        - auth
-      summary: Authenticate a user
-      description: Authenticates a user's credentials and returns tokens
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  example: myuser
-                  required: true
-                password:
-                  type: string
-                  example: P4$$w0rd!
-                  required: true
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  access_token:
-                    type: string
-                    example: myaccesstoken
-                  refresh_token:
-                    type: string
-                    example: myrefreshtoken
-        400:
-          description: bad request
-      security: []
-    """
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400
 
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    if not username or not password:
+    login_usuario = request.json.get("login_usuario", None)
+    password_usuario = request.json.get("password_usuario", None)
+    if not login_usuario or not password_usuario:
         return jsonify({"msg": "Missing username or password"}), 400
 
-    user = User.query.filter_by(username=username).first()
-    if user is None or not pwd_context.verify(password, user.password):
+    usuario = Usuario(login_usuario=login_usuario)
+    user = usuario.seleccionar_por_login()[0]
+    print(user)
+    print(password_usuario)
+    print(user['password_usuario'])
+    if user is None or not pwd_context.verify(password_usuario, user['password_usuario']):
         return jsonify({"msg": "Bad credentials"}), 400
 
-    access_token = create_access_token(identity=user.id)
-    refresh_token = create_refresh_token(identity=user.id)
+    access_token = create_access_token(identity=user['id_entidad'])
+    refresh_token = create_refresh_token(identity=user['id_entidad'])
     add_token_to_database(access_token, app.config["JWT_IDENTITY_CLAIM"])
     add_token_to_database(refresh_token, app.config["JWT_IDENTITY_CLAIM"])
 
@@ -177,17 +142,10 @@ def revoke_refresh_token():
 @jwt.user_lookup_loader
 def user_loader_callback(jwt_headers, jwt_payload):
     identity = jwt_payload["sub"]
-    return User.query.get(identity)
+    return Usuario.query.get(identity)
 
 
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_headers, jwt_payload):
     return is_token_revoked(jwt_payload)
 
-
-@blueprint.before_app_first_request
-def register_views():
-    apispec.spec.path(view=login, app=app)
-    apispec.spec.path(view=refresh, app=app)
-    apispec.spec.path(view=revoke_access_token, app=app)
-    apispec.spec.path(view=revoke_refresh_token, app=app)

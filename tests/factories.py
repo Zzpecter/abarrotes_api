@@ -1,5 +1,5 @@
 import factory
-from abarrotes_api_rest.models import User
+from abarrotes_api_rest.models import Usuario
 
 
 class UserFactory(factory.Factory):
@@ -9,4 +9,4 @@ class UserFactory(factory.Factory):
     password = "mypwd"
 
     class Meta:
-        model = User
+        model = Usuario

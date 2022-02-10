@@ -7,10 +7,10 @@ from flask.cli import with_appcontext
 def init():
     """Create a new admin user"""
     from abarrotes_api_rest.extensions import db
-    from abarrotes_api_rest.models import User
+    from abarrotes_api_rest.models import Usuario
 
     click.echo("create user")
-    user = User(username="admin", email="admin@mail.com", password="admin", active=True)
+    user = Usuario(username="admin", email="admin@mail.com", password="admin", active=True)
     db.session.add(user)
     db.session.commit()
     click.echo("created user admin")

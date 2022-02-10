@@ -2,7 +2,7 @@ import json
 import pytest
 from dotenv import load_dotenv
 
-from abarrotes_api_rest.models import User
+from abarrotes_api_rest.models import Usuario
 from abarrotes_api_rest.app import create_app
 from abarrotes_api_rest.extensions import db as _db
 from pytest_factoryboy import register
@@ -34,7 +34,7 @@ def db(app):
 
 @pytest.fixture
 def admin_user(db):
-    user = User(
+    user = Usuario(
         username='admin',
         email='admin@admin.com',
         password='admin'

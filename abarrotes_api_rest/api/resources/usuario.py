@@ -1,98 +1,22 @@
 from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
-from abarrotes_api_rest.api.schemas import UserSchema
-from abarrotes_api_rest.models import User
+from abarrotes_api_rest.models import Usuario
 from abarrotes_api_rest.extensions import db
 from abarrotes_api_rest.commons.pagination import paginate
 
 
 class UserResource(Resource):
-    """Single object resource
-
-    ---
-    get:
-      tags:
-        - api
-      summary: Get a user
-      description: Get a single user by ID
-      parameters:
-        - in: path
-          name: user_id
-          schema:
-            type: integer
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  user: UserSchema
-        404:
-          description: user does not exists
-    put:
-      tags:
-        - api
-      summary: Update a user
-      description: Update a single user by ID
-      parameters:
-        - in: path
-          name: user_id
-          schema:
-            type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              UserSchema
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-                    example: user updated
-                  user: UserSchema
-        404:
-          description: user does not exists
-    delete:
-      tags:
-        - api
-      summary: Delete a user
-      description: Delete a single user by ID
-      parameters:
-        - in: path
-          name: user_id
-          schema:
-            type: integer
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-                    example: user deleted
-        404:
-          description: user does not exists
-    """
-
     method_decorators = [jwt_required()]
 
     def get(self, user_id):
-        schema = UserSchema()
-        user = User.query.get_or_404(user_id)
+
+        user = Usuario.query.get_or_404(user_id)
         return {"user": schema.dump(user)}
 
     def put(self, user_id):
         schema = UserSchema(partial=True)
-        user = User.query.get_or_404(user_id)
+        user = Usuario.query.get_or_404(user_id)
         user = schema.load(request.json, instance=user)
 
         db.session.commit()
@@ -100,7 +24,7 @@ class UserResource(Resource):
         return {"msg": "user updated", "user": schema.dump(user)}
 
     def delete(self, user_id):
-        user = User.query.get_or_404(user_id)
+        user = Usuario.query.get_or_404(user_id)
         db.session.delete(user)
         db.session.commit()
 
@@ -156,7 +80,7 @@ class UserList(Resource):
 
     def get(self):
         schema = UserSchema(many=True)
-        query = User.query
+        query = Usuario.query
         return paginate(query, schema)
 
     def post(self):

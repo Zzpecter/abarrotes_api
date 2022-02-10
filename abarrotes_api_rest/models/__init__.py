@@ -1,5 +1,4 @@
-from abarrotes_api_rest.models.user import User
-from abarrotes_api_rest.models.blocklist import TokenBlocklist
+from abarrotes_api_rest.models.usuario import Usuario
 
 
-__all__ = ["User", "TokenBlocklist"]
+__all__ = ["Usuario"]
