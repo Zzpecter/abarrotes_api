@@ -2,92 +2,58 @@ from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 from abarrotes_api_rest.models import Usuario
-from abarrotes_api_rest.extensions import db
-from abarrotes_api_rest.commons.pagination import paginate
 
 
 class UserResource(Resource):
     method_decorators = [jwt_required()]
 
-    def get(self, user_id):
+    def __init__(self):
+        self.usuario = Usuario()
 
-        user = Usuario.query.get_or_404(user_id)
-        return {"user": schema.dump(user)}
+    def get(self, id_entidad):
+        self.usuario.id_entidad = id_entidad
+        usuario = self.usuario.seleccionar()
+        print(usuario.json)
+        return usuario
 
-    def put(self, user_id):
-        schema = UserSchema(partial=True)
-        user = Usuario.query.get_or_404(user_id)
-        user = schema.load(request.json, instance=user)
+    def put(self, id_entidad):
+        self.usuario.id_entidad = id_entidad
+        print(f'put user endpoint; request: {request.json}')
 
-        db.session.commit()
+        self.usuario.id_nivel = request.json['id_nivel']
+        self.usuario.login_usuario = request.json['login_usuario']
+        self.usuario.password_usuario = request.json['password_usuario']
+        self.usuario.usuario_registro = request.json['usuario_registro']
 
-        return {"msg": "user updated", "user": schema.dump(user)}
+        self.usuario.actualizar()
+        return {"mensaje": "usuario actualizado correctamente"}
 
-    def delete(self, user_id):
-        user = Usuario.query.get_or_404(user_id)
-        db.session.delete(user)
-        db.session.commit()
+    def delete(self, id_entidad):
+        self.usuario.id_entidad = id_entidad
+        self.usuario.eliminar()
 
-        return {"msg": "user deleted"}
+        return {"mensaje": "usuario eliminado correctamente"}
 
 
 class UserList(Resource):
     """Creation and get_all
-
-    ---
-    get:
-      tags:
-        - api
-      summary: Get a list of users
-      description: Get a list of paginated users
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/PaginatedResult'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/UserSchema'
-    post:
-      tags:
-        - api
-      summary: Create a user
-      description: Create a new user
-      requestBody:
-        content:
-          application/json:
-            schema:
-              UserSchema
-      responses:
-        201:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-                    example: user created
-                  user: UserSchema
     """
 
     method_decorators = [jwt_required()]
 
+    def __init__(self):
+        self.usuario = Usuario()
+
     def get(self):
-        schema = UserSchema(many=True)
-        query = Usuario.query
-        return paginate(query, schema)
+        return self.usuario.listar()
 
     def post(self):
-        schema = UserSchema()
-        user = schema.load(request.json)
+        print(f'post user endpoint; request: {request.json}')
+        self.usuario.id_entidad = request.json['id_entidad']
+        self.usuario.id_nivel = request.json['id_nivel']
+        self.usuario.login_usuario = request.json['login_usuario']
+        self.usuario.password_usuario = request.json['password_usuario']
+        self.usuario.usuario_registro = request.json['usuario_registro']
 
-        db.session.add(user)
-        db.session.commit()
-
-        return {"msg": "user created", "user": schema.dump(user)}, 201
+        self.usuario.insertar()
+        return {"mensaje": "usuario agregado correctamente"}, 201

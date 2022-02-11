@@ -9,7 +9,7 @@ from flask_jwt_extended import (
 
 from abarrotes_api_rest.models import Usuario
 from abarrotes_api_rest.extensions import pwd_context, jwt
-from abarrotes_api_rest.auth.helpers import revoke_token, is_token_revoked, add_token_to_database
+from abarrotes_api_rest.auth.helpers import revocar_token, is_token_revoked, add_token_to_database
 
 
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
@@ -103,7 +103,7 @@ def revoke_access_token():
     """
     jti = get_jwt()["jti"]
     user_identity = get_jwt_identity()
-    revoke_token(jti, user_identity)
+    revocar_token(jti, user_identity)
     return jsonify({"message": "token revoked"}), 200
 
 
@@ -135,14 +135,16 @@ def revoke_refresh_token():
     """
     jti = get_jwt()["jti"]
     user_identity = get_jwt_identity()
-    revoke_token(jti, user_identity)
+    revocar_token(jti, user_identity)
     return jsonify({"message": "token revoked"}), 200
 
 
 @jwt.user_lookup_loader
 def user_loader_callback(jwt_headers, jwt_payload):
     identity = jwt_payload["sub"]
-    return Usuario.query.get(identity)
+    print(f'jwt.user_lookup_loader . identity: {identity}')
+    usuario = Usuario(id_entidad=identity)
+    return usuario.seleccionar()
 
 
 @jwt.token_in_blocklist_loader
