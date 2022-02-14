@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorResource, ProveedorList,ClienteResource, \
-    ClienteList
+    ClienteList, LocalidadResource, LocalidadList
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -14,5 +14,7 @@ api.add_resource(ProveedorResource, "/proveedores/<int:id_entidad>", endpoint="p
 api.add_resource(ProveedorList, "/proveedores", endpoint="proveedores")
 api.add_resource(ClienteResource, "/clientes/<int:id_entidad>", endpoint="cliente_by_id")
 api.add_resource(ClienteList, "/clientes", endpoint="clientes")
+api.add_resource(LocalidadResource, "/localidades/<int:id_localidad>", endpoint="localidad_by_id")
+api.add_resource(LocalidadList, "/localidades", endpoint="localidades")
 
 
