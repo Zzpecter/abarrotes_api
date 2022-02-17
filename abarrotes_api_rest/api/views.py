@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorResource, ProveedorList,ClienteResource, \
     ClienteList, LocalidadResource, LocalidadList, DepartamentoResource, DepartamentoList, ContactoResource, \
-    ContactoList, ContactoCorreoResource, ContactoCorreoList
+    ContactoList, ContactoCorreoResource, ContactoCorreoList, ContactoTelefonoResource, ContactoTelefonoList
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -23,5 +23,7 @@ api.add_resource(ContactoResource, "/contactos/<int:id_contacto>", endpoint="con
 api.add_resource(ContactoList, "/contactos", endpoint="contactos")
 api.add_resource(ContactoCorreoResource, "/contactos_correo/<int:id_contacto_correo>", endpoint="contacto_correo_by_id")
 api.add_resource(ContactoCorreoList, "/contactos_correo", endpoint="contactos_correo")
+api.add_resource(ContactoTelefonoResource, "/contactos_telefono/<int:id_contacto_telefono>", endpoint="contacto_telefono_by_id")
+api.add_resource(ContactoTelefonoList, "/contactos_telefono", endpoint="contactos_telefono")
 
 
