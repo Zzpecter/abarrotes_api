@@ -4,4 +4,5 @@ from abarrotes_api_rest.models.cliente import Cliente
 from abarrotes_api_rest.models.localidad import Localidad
 from abarrotes_api_rest.models.departamento import Departamento
 from abarrotes_api_rest.models.contacto import Contacto
-__all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto"]
+from abarrotes_api_rest.models.contacto_correo import ContactoCorreo
+__all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo"]
