@@ -6,9 +6,10 @@ from abarrotes_api_rest.api.resources.departamento import DepartamentoResource, 
 from abarrotes_api_rest.api.resources.contacto import ContactoResource, ContactoList
 from abarrotes_api_rest.api.resources.contacto_correo import ContactoCorreoResource, ContactoCorreoList
 from abarrotes_api_rest.api.resources.contacto_telefono import ContactoTelefonoResource, ContactoTelefonoList
+from abarrotes_api_rest.api.resources.contacto_direccion import ContactoDireccionResource, ContactoDireccionList
 
 
 __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "ClienteResource", "ClienteList",
            "LocalidadResource", "LocalidadList", "DepartamentoResource", "DepartamentoList", "ContactoResource",
            "ContactoList", "ContactoCorreoResource", "ContactoCorreoList", "ContactoTelefonoResource",
-           "ContactoTelefonoList"]
+           "ContactoTelefonoList", "ContactoDireccionResource", "ContactoDireccionList"]
