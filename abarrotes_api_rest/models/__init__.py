@@ -7,5 +7,6 @@ from abarrotes_api_rest.models.contacto import Contacto
 from abarrotes_api_rest.models.contacto_correo import ContactoCorreo
 from abarrotes_api_rest.models.contacto_telefono import ContactoTelefono
 from abarrotes_api_rest.models.contacto_direccion import ContactoDireccion
+from abarrotes_api_rest.models.unidad_presentacion import UnidadPresentacion
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
-           "ContactoTelefono", "ContactoDireccion"]
+           "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion"]
