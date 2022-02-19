@@ -3,7 +3,8 @@ from flask_restful import Api
 from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorResource, ProveedorList,ClienteResource, \
     ClienteList, LocalidadResource, LocalidadList, DepartamentoResource, DepartamentoList, ContactoResource, \
     ContactoList, ContactoCorreoResource, ContactoCorreoList, ContactoTelefonoResource, ContactoTelefonoList, \
-    ContactoDireccionList, ContactoDireccionResource, UnidadPresentacionList, UnidadPresentacionResource
+    ContactoDireccionList, ContactoDireccionResource, UnidadPresentacionList, UnidadPresentacionResource, \
+    PresentacionProductoResource, PresentacionProductoList
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -30,4 +31,6 @@ api.add_resource(ContactoDireccionResource, "/contactos_direccion/<int:id_contac
 api.add_resource(ContactoDireccionList, "/contactos_direccion", endpoint="contactos_direccion")
 api.add_resource(UnidadPresentacionResource, "/unidad_presentacion/<int:id_unidad_presentacion>", endpoint="unidad_presentacion_by_id")
 api.add_resource(UnidadPresentacionList, "/unidad_presentacion", endpoint="unidad_presentacion")
+api.add_resource(PresentacionProductoResource, "/presentacion_producto/<int:id_presentacion_producto>", endpoint="presentacion_producto_by_id")
+api.add_resource(PresentacionProductoList, "/presentacion_producto", endpoint="presentacion_producto")
 
