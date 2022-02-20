@@ -4,7 +4,7 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     ClienteList, LocalidadResource, LocalidadList, DepartamentoResource, DepartamentoList, ContactoResource, \
     ContactoList, ContactoCorreoResource, ContactoCorreoList, ContactoTelefonoResource, ContactoTelefonoList, \
     ContactoDireccionList, ContactoDireccionResource, UnidadPresentacionList, UnidadPresentacionResource, \
-    PresentacionProductoResource, PresentacionProductoList
+    PresentacionProductoResource, PresentacionProductoList, ProductoResource, ProductoList
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -33,4 +33,6 @@ api.add_resource(UnidadPresentacionResource, "/unidad_presentacion/<int:id_unida
 api.add_resource(UnidadPresentacionList, "/unidad_presentacion", endpoint="unidad_presentacion")
 api.add_resource(PresentacionProductoResource, "/presentacion_producto/<int:id_presentacion_producto>", endpoint="presentacion_producto_by_id")
 api.add_resource(PresentacionProductoList, "/presentacion_producto", endpoint="presentacion_producto")
+api.add_resource(ProductoResource, "/productos/<int:id_producto>", endpoint="producto_by_id")
+api.add_resource(ProductoList, "/productos", endpoint="productos")
 
