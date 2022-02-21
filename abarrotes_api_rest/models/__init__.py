@@ -13,6 +13,7 @@ from abarrotes_api_rest.models.producto import Producto
 from abarrotes_api_rest.models.almacen import Almacen
 from abarrotes_api_rest.models.producto_almacen import ProductoAlmacen
 from abarrotes_api_rest.models.disposicion import Disposicion
+from abarrotes_api_rest.models.motivo import Motivo
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
-           "ProductoAlmacen", "Disposicion"]
+           "ProductoAlmacen", "Disposicion", "Motivo"]
