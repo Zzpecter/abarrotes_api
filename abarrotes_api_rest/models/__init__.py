@@ -15,6 +15,7 @@ from abarrotes_api_rest.models.producto_almacen import ProductoAlmacen
 from abarrotes_api_rest.models.disposicion import Disposicion
 from abarrotes_api_rest.models.motivo import Motivo
 from abarrotes_api_rest.models.venta import Venta
+from abarrotes_api_rest.models.detalle_salida import DetalleSalida
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
-           "ProductoAlmacen", "Disposicion", "Motivo", "Venta"]
+           "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida"]
