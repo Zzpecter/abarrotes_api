@@ -16,6 +16,7 @@ from abarrotes_api_rest.api.resources.disposicion import DisposicionList, Dispos
 from abarrotes_api_rest.api.resources.motivo import MotivoResource, MotivoList
 from abarrotes_api_rest.api.resources.venta import VentaResource, VentaList
 from abarrotes_api_rest.api.resources.detalle_salida import DetalleSalidaResource, DetalleSalidaList
+from abarrotes_api_rest.api.resources.detalle_entrada import DetalleEntradaResource, DetalleEntradaList
 
 
 __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "ClienteResource", "ClienteList",
@@ -25,4 +26,4 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "UnidadPresentacionList", "PresentacionProductoResource", "PresentacionProductoList", "ProductoResource",
            "ProductoList", "AlmacenResource", "AlmacenList", "ProductoAlmacenResource", "ProductoAlmacenList",
            "DisposicionList", "DisposicionResource", "MotivoResource", "MotivoList", "VentaResource", "VentaList",
-           "DetalleSalidaResource", "DetalleSalidaList"]
+           "DetalleSalidaResource", "DetalleSalidaList", "DetalleEntradaResource", "DetalleEntradaList"]
