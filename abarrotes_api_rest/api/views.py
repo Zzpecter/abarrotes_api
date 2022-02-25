@@ -7,7 +7,7 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     PresentacionProductoResource, PresentacionProductoList, ProductoResource, ProductoList, AlmacenResource, \
     AlmacenList, ProductoAlmacenList, ProductoAlmacenResource, DisposicionList, DisposicionResource, MotivoResource, \
     MotivoList, VentaList, VentaResource, DetalleSalidaResource, DetalleSalidaList, DetalleEntradaList, \
-    DetalleEntradaResource, CompraResource, CompraList
+    DetalleEntradaResource, CompraResource, CompraList, FacturaResource, FacturaList
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -54,4 +54,6 @@ api.add_resource(DetalleEntradaResource, "/detalle_entrada/<int:id_detalle_entra
 api.add_resource(DetalleEntradaList, "/detalle_entrada", endpoint="detalle_entrada")
 api.add_resource(CompraResource, "/compras/<int:id_compra>", endpoint="compras_by_id")
 api.add_resource(CompraList, "/compras", endpoint="compras")
+api.add_resource(FacturaResource, "/factura/<int:id_factura>", endpoint="factura_by_id")
+api.add_resource(FacturaList, "/factura", endpoint="factura")
 

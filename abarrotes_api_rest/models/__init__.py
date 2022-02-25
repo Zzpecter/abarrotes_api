@@ -18,6 +18,7 @@ from abarrotes_api_rest.models.venta import Venta
 from abarrotes_api_rest.models.detalle_salida import DetalleSalida
 from abarrotes_api_rest.models.detalle_entrada import DetalleEntrada
 from abarrotes_api_rest.models.compra import Compra
+from abarrotes_api_rest.models.factura import Factura
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
-           "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra"]
+           "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra", "Factura"]
