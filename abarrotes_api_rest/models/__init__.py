@@ -19,6 +19,8 @@ from abarrotes_api_rest.models.detalle_salida import DetalleSalida
 from abarrotes_api_rest.models.detalle_entrada import DetalleEntrada
 from abarrotes_api_rest.models.compra import Compra
 from abarrotes_api_rest.models.factura import Factura
+from abarrotes_api_rest.models.nivel import Nivel
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
-           "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra", "Factura"]
+           "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra", "Factura",
+           "Nivel"]
