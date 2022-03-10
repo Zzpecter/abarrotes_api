@@ -32,6 +32,15 @@ class Usuario():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
+    def listar_usuario_nivel(self):
+        sql_query = 'SELECT * FROM vi_usuario_nivel'
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        print(description[0] for description in self.cursor.description)
+        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
+        print(f'response from mySQL: {r}')
+        return jsonify(r)
+
     def seleccionar(self):
         sql_query = f"SELECT * FROM vi_usuario WHERE id_entidad = {self.id_entidad}"
         print(f'sending query to mySQL: {sql_query}')

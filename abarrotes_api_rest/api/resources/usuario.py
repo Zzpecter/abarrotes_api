@@ -57,3 +57,13 @@ class UserList(Resource):
 
         self.usuario.insertar()
         return {"mensaje": "usuario agregado correctamente"}, 201
+
+
+class UsuarioNivelView(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.usuario = Usuario()
+
+    def get(self):
+        return self.usuario.listar_usuario_nivel()
