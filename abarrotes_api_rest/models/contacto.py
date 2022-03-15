@@ -24,6 +24,15 @@ class Contacto():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
+    def listar_unified(self):
+        sql_query = f'SELECT * FROM vi_contactos_unified WHERE id_contacto = {self.id_contacto}'
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        print(description[0] for description in self.cursor.description)
+        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
+        print(f'response from mySQL: {r}')
+        return jsonify(r)
+
     def seleccionar(self):
         sql_query = f"SELECT * FROM vi_contacto WHERE id_contacto = {self.id_contacto}"
         print(f'sending query to mySQL: {sql_query}')

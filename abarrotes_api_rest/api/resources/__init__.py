@@ -3,7 +3,7 @@ from abarrotes_api_rest.api.resources.proveedor import ProveedorResource, Provee
 from abarrotes_api_rest.api.resources.cliente import ClienteResource, ClienteList
 from abarrotes_api_rest.api.resources.localidad import LocalidadResource, LocalidadList
 from abarrotes_api_rest.api.resources.departamento import DepartamentoResource, DepartamentoList
-from abarrotes_api_rest.api.resources.contacto import ContactoResource, ContactoList
+from abarrotes_api_rest.api.resources.contacto import ContactoResource, ContactoList, ContactoUnified
 from abarrotes_api_rest.api.resources.contacto_correo import ContactoCorreoResource, ContactoCorreoList
 from abarrotes_api_rest.api.resources.contacto_telefono import ContactoTelefonoResource, ContactoTelefonoList
 from abarrotes_api_rest.api.resources.contacto_direccion import ContactoDireccionResource, ContactoDireccionList
@@ -31,4 +31,4 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "DisposicionList", "DisposicionResource", "MotivoResource", "MotivoList", "VentaResource", "VentaList",
            "DetalleSalidaResource", "DetalleSalidaList", "DetalleEntradaResource", "DetalleEntradaList",
            "CompraResource", "CompraList", "FacturaResource", "FacturaList", "NivelResource", "NivelList",
-           "UsuarioNivelView"]
+           "UsuarioNivelView", "ContactoUnified"]

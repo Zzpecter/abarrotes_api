@@ -42,3 +42,14 @@ class ContactoList(Resource):
 
         self.contacto.insertar()
         return {"mensaje": "contacto agregado correctamente"}, 201
+
+class ContactoUnified(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.contacto = Contacto()
+
+    def get(self, id_contacto):
+        self.contacto.id_contacto = id_contacto
+        return self.contacto.listar_unified()
+
