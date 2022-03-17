@@ -53,3 +53,11 @@ class ContactoUnified(Resource):
         self.contacto.id_contacto = id_contacto
         return self.contacto.listar_unified()
 
+    def get(self, id_contacto):
+        self.contacto.id_contacto = id_contacto
+        return self.contacto.listar_unified()
+
+    def delete(self, id_contacto):
+        self.contacto.id_entidad = id_contacto
+        return self.contacto.eliminar_por_entidad()
+

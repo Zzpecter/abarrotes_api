@@ -55,5 +55,11 @@ class Contacto():
         self.cursor.execute(sql_query)
         self.connection.commit()
 
+    def eliminar_por_entidad(self):
+        sql_query = f"UPDATE contacto SET es_registro_activo = 0 WHERE id_entidad = {self.id_entidad}"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        self.connection.commit()
+
     def validar(self):
         pass

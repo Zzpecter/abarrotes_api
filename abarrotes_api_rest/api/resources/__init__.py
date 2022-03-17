@@ -20,6 +20,7 @@ from abarrotes_api_rest.api.resources.detalle_entrada import DetalleEntradaResou
 from abarrotes_api_rest.api.resources.compra import CompraResource, CompraList
 from abarrotes_api_rest.api.resources.factura import FacturaResource, FacturaList
 from abarrotes_api_rest.api.resources.nivel import NivelResource, NivelList
+from abarrotes_api_rest.api.resources.entidad import EntidadList, EntidadResource
 
 
 __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "ClienteResource", "ClienteList",
@@ -31,4 +32,4 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "DisposicionList", "DisposicionResource", "MotivoResource", "MotivoList", "VentaResource", "VentaList",
            "DetalleSalidaResource", "DetalleSalidaList", "DetalleEntradaResource", "DetalleEntradaList",
            "CompraResource", "CompraList", "FacturaResource", "FacturaList", "NivelResource", "NivelList",
-           "UsuarioNivelView", "ContactoUnified"]
+           "UsuarioNivelView", "ContactoUnified", "EntidadResource", "EntidadList"]
