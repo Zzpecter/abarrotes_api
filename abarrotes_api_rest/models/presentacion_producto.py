@@ -17,7 +17,7 @@ class PresentacionProducto():
         self.cursor = self.connection.cursor()
 
     def listar(self):
-        sql_query = 'SELECT * FROM vi_presentacion_producto'
+        sql_query = 'SELECT * FROM vi_presentacion_unidad'
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         print(description[0] for description in self.cursor.description)
