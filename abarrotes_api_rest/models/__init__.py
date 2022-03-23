@@ -21,8 +21,9 @@ from abarrotes_api_rest.models.compra import Compra
 from abarrotes_api_rest.models.factura import Factura
 from abarrotes_api_rest.models.nivel import Nivel
 from abarrotes_api_rest.models.entidad import Entidad
+from abarrotes_api_rest.models.custom_views import CustomViews
 
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
            "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra", "Factura",
-           "Nivel", "Entidad"]
+           "Nivel", "Entidad", "CustomViews"]

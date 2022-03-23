@@ -8,7 +8,8 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     AlmacenList, ProductoAlmacenList, ProductoAlmacenResource, DisposicionList, DisposicionResource, MotivoResource, \
     MotivoList, VentaList, VentaResource, DetalleSalidaResource, DetalleSalidaList, DetalleEntradaList, \
     DetalleEntradaResource, CompraResource, CompraList, FacturaResource, FacturaList, NivelResource, NivelList, \
-    UsuarioNivelView, ContactoUnified, EntidadResource, EntidadList
+    UsuarioNivelView, ContactoUnified, EntidadResource, EntidadList, ViDisposicionMotivoResource, \
+    ViProductoEnAlmacenResource, ViProductoPresentacionUnidadResource, ViCompraProveedorResource, ViVentaClienteResource
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -63,4 +64,9 @@ api.add_resource(UsuarioNivelView, "/usuario-nivel", endpoint="usuario-nivel_vie
 api.add_resource(ContactoUnified, "/contactos_unified/<int:id_contacto>", endpoint="contacto_unified_by_id")
 api.add_resource(EntidadResource, "/entidades/<int:id_entidad>", endpoint="entidades_by_id")
 api.add_resource(EntidadList, "/entidades", endpoint="entidades")
+api.add_resource(ViDisposicionMotivoResource, "/views/disposicion_motivo", endpoint="vi_disposicion_motivo")
+api.add_resource(ViVentaClienteResource, "/views/venta_cliente", endpoint="vi_venta_cliente")
+api.add_resource(ViCompraProveedorResource, "/views/compra_proveedor", endpoint="vi_compra_proveedor")
+api.add_resource(ViProductoEnAlmacenResource, "/views/producto_almacen", endpoint="vi_producto_almacen")
+api.add_resource(ViProductoPresentacionUnidadResource, "/views/producto_presentacion", endpoint="vi_producto_presentacion")
 
