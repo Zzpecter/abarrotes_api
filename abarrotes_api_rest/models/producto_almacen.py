@@ -51,9 +51,12 @@ class ProductoAlmacen():
         sql_query = f"SELECT * FROM vi_producto_almacen WHERE id_almacen = {self.id_almacen}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
-        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()][0]
-        print(f'response from mySQL: {r}')
-        return jsonify(r)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "almacen no encontrado"})
 
     def insertar(self):
         sql_query = f"INSERT INTO producto_almacen ( id_almacen, id_producto, stock_actual, usuario_registro) VALUES " \
