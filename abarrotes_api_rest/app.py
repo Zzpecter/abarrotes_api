@@ -4,11 +4,13 @@ from abarrotes_api_rest import auth
 from abarrotes_api_rest import manage
 from abarrotes_api_rest.extensions import db
 from abarrotes_api_rest.extensions import jwt
+from simplejson import JSONEncoder
 
 
 def create_app(testing=False):
     """Application factory, used to create application"""
     app = Flask("abarrotes_api_rest")
+    app.json_encoder = JSONEncoder
     app.config.from_object("abarrotes_api_rest.config")
 
     app.config['MYSQL_DATABASE_USER'] = "root"
