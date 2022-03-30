@@ -9,7 +9,7 @@ from abarrotes_api_rest.api.resources.contacto_telefono import ContactoTelefonoR
 from abarrotes_api_rest.api.resources.contacto_direccion import ContactoDireccionResource, ContactoDireccionList
 from abarrotes_api_rest.api.resources.unidad_presentacion import UnidadPresentacionResource, UnidadPresentacionList
 from abarrotes_api_rest.api.resources.presentacion_producto import PresentacionProductoResource, PresentacionProductoList
-from abarrotes_api_rest.api.resources.producto import ProductoResource, ProductoList
+from abarrotes_api_rest.api.resources.producto import ProductoResource, ProductoList, ProductoBusqueda
 from abarrotes_api_rest.api.resources.almacen import AlmacenResource, AlmacenList
 from abarrotes_api_rest.api.resources.producto_almacen import ProductoAlmacenResource, ProductoAlmacenList, \
     ProductoAlmacenResourceProducto, ProductoAlmacenResourceAlmacen
@@ -37,4 +37,5 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "CompraResource", "CompraList", "FacturaResource", "FacturaList", "NivelResource", "NivelList",
            "UsuarioNivelView", "ContactoUnified", "EntidadResource", "EntidadList", "ViVentaClienteResource",
            "ViCompraProveedorResource", "ViProductoEnAlmacenResource", "ViProductoPresentacionUnidadResource",
-           "ViDisposicionMotivoResource", "ProductoAlmacenResourceProducto", "ProductoAlmacenResourceAlmacen"]
+           "ViDisposicionMotivoResource", "ProductoAlmacenResourceProducto", "ProductoAlmacenResourceAlmacen",
+           "ProductoBusqueda"]

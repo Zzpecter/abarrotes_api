@@ -34,6 +34,17 @@ class Producto():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
+    def buscar(self, query):
+        sql_query = f"SELECT * FROM vi_producto WHERE nombre rlike '{query}' or codigo rlike '{query}'"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 1:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "producto no encontrado"})
+
     def insertar(self):
         sql_query = f"INSERT INTO producto (id_presentacion_producto, nombre, codigo, usuario_registro) VALUES " \
                     f"({self.id_presentacion_producto}, '{self.nombre}', '{self.codigo}', '{self.usuario_registro}')"

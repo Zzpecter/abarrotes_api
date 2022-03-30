@@ -56,3 +56,15 @@ class ProductoList(Resource):
 
         self.producto.insertar()
         return {"mensaje": "producto agregado correctamente"}, 201
+
+
+class ProductoBusqueda(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.producto = Producto()
+
+    def get(self, query):
+        producto = self.producto.buscar(query)
+        print(producto.json)
+        return self.producto.buscar(query)
