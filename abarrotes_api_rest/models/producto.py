@@ -39,15 +39,15 @@ class Producto():
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         all = self.cursor.fetchall()
-        if len(all) > 1:
+        if len(all) > 0:
             r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
             print(f'response from mySQL: {r}')
             return jsonify(r)
         return jsonify({"message": "producto no encontrado"})
 
     def insertar(self):
-        sql_query = f"INSERT INTO producto (id_presentacion_producto, nombre, codigo, usuario_registro) VALUES " \
-                    f"({self.id_presentacion_producto}, '{self.nombre}', '{self.codigo}', '{self.usuario_registro}')"
+        sql_query = f"INSERT INTO producto (id_presentacion_producto, nombre, codigo, precio_compra, precio_venta, usuario_registro) VALUES " \
+                    f"({self.id_presentacion_producto}, '{self.nombre}', '{self.codigo}', {self.precio_compra}, {self.precio_venta}, '{self.usuario_registro}')"
         print(f'sending query to mySQL: {sql_query}')
         print(sql_query)
         self.cursor.execute(sql_query)
@@ -56,6 +56,7 @@ class Producto():
     def actualizar(self):
         sql_query = f"UPDATE producto SET id_presentacion_producto = {self.id_presentacion_producto}, " \
                     f"nombre = '{self.nombre}', codigo = '{self.codigo}', " \
+                    f"precio_compra = {self.precio_compra}, precio_venta = {self.precio_venta}, " \
                     f"usuario_registro = '{self.usuario_registro}' WHERE id_producto = {self.id_producto}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)

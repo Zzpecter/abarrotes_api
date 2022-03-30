@@ -23,6 +23,8 @@ class ProductoResource(Resource):
         self.producto.id_presentacion_producto = request.json['id_presentacion_producto']
         self.producto.nombre = request.json['nombre']
         self.producto.codigo = request.json['codigo']
+        self.producto.precio_compra = request.json['precio_compra']
+        self.producto.precio_venta = request.json['precio_venta']
         self.producto.usuario_registro = request.json['usuario_registro']
 
         self.producto.actualizar()
@@ -52,6 +54,8 @@ class ProductoList(Resource):
         self.producto.id_presentacion_producto = request.json['id_presentacion_producto']
         self.producto.nombre = request.json['nombre']
         self.producto.codigo = request.json['codigo']
+        self.producto.precio_compra = request.json['precio_compra']
+        self.producto.precio_venta = request.json['precio_venta']
         self.producto.usuario_registro = request.json['usuario_registro']
 
         self.producto.insertar()
