@@ -56,3 +56,29 @@ class ProductoAlmacenList(Resource):
 
         self.producto_almacen.insertar()
         return {"mensaje": "producto_almacen agregado correctamente"}, 201
+
+
+class ProductoAlmacenResourceProducto(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.producto_almacen = ProductoAlmacen()
+
+    def get(self, id_producto):
+        self.producto_almacen.id_producto = id_producto
+        producto_almacen = self.producto_almacen.seleccionar_por_producto()
+        print(producto_almacen.json)
+        return producto_almacen
+
+
+class ProductoAlmacenResourceAlmacen(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.producto_almacen = ProductoAlmacen()
+
+    def get(self, id_almacen):
+        self.producto_almacen.id_almacen = id_almacen
+        producto_almacen = self.producto_almacen.seleccionar_por_almacen()
+        print(producto_almacen.json)
+        return producto_almacen

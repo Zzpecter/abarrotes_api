@@ -9,7 +9,9 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     MotivoList, VentaList, VentaResource, DetalleSalidaResource, DetalleSalidaList, DetalleEntradaList, \
     DetalleEntradaResource, CompraResource, CompraList, FacturaResource, FacturaList, NivelResource, NivelList, \
     UsuarioNivelView, ContactoUnified, EntidadResource, EntidadList, ViDisposicionMotivoResource, \
-    ViProductoEnAlmacenResource, ViProductoPresentacionUnidadResource, ViCompraProveedorResource, ViVentaClienteResource
+    ViProductoEnAlmacenResource, ViProductoPresentacionUnidadResource, ViCompraProveedorResource, ViVentaClienteResource, \
+    ProductoAlmacenResourceProducto, ProductoAlmacenResourceAlmacen
+
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -69,4 +71,6 @@ api.add_resource(ViVentaClienteResource, "/views/venta_cliente", endpoint="vi_ve
 api.add_resource(ViCompraProveedorResource, "/views/compra_proveedor", endpoint="vi_compra_proveedor")
 api.add_resource(ViProductoEnAlmacenResource, "/views/producto_almacen", endpoint="vi_producto_almacen")
 api.add_resource(ViProductoPresentacionUnidadResource, "/views/producto_presentacion", endpoint="vi_producto_presentacion")
+api.add_resource(ProductoAlmacenResourceProducto, "/producto_almacen/producto/<int:id_producto>", endpoint="producto_almacen_by_producto_id")
+api.add_resource(ProductoAlmacenResourceAlmacen, "/producto_almacen/almacen/<int:id_almacen>", endpoint="producto_almacen_by_almacen_id")
 
