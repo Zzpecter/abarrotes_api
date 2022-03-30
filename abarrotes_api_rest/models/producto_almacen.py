@@ -39,9 +39,12 @@ class ProductoAlmacen():
         sql_query = f"SELECT * FROM vi_producto_almacen WHERE id_producto = {self.id_producto}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
-        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()][0]
-        print(f'response from mySQL: {r}')
-        return jsonify(r)
+        all = self.cursor.fetchall()
+        if len(all) > 1:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "producto no encontrado"})
 
 
     def seleccionar_por_almacen(self):
