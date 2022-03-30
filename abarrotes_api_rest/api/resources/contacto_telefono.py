@@ -56,3 +56,16 @@ class ContactoTelefonoList(Resource):
 
         self.contacto_telefono.insertar()
         return {"mensaje": "telefono de contacto  agregado correctamente"}, 201
+
+
+class ContactoTelefonoByContactoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.contacto_telefono = ContactoTelefono()
+
+    def get(self, id_contacto):
+        self.contacto_telefono.id_contacto = id_contacto
+        contacto_telefono = self.contacto_telefono.listar_por_contacto()
+        print(contacto_telefono.json)
+        return contacto_telefono

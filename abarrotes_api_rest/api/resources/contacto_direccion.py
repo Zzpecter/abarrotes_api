@@ -60,3 +60,16 @@ class ContactoDireccionList(Resource):
         self.contacto_direccion.usuario_registro = request.json['usuario_registro']
         self.contacto_direccion.insertar()
         return {"mensaje": "direccion de contacto  agregado correctamente"}, 201
+
+
+class ContactoDireccionByContactoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.contacto_direccion = ContactoDireccion()
+
+    def get(self, id_contacto):
+        self.contacto_direccion.id_contacto = id_contacto
+        contacto_direccion = self.contacto_direccion.listar_por_contacto()
+        print(contacto_direccion.json)
+        return contacto_direccion

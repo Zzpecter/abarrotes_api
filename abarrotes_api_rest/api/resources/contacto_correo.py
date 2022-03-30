@@ -12,9 +12,9 @@ class ContactoCorreoResource(Resource):
 
     def get(self, id_contacto_correo):
         self.contacto_correo.id_contacto_correo = id_contacto_correo
-        localidad = self.contacto_correo.seleccionar()
-        print(localidad.json)
-        return localidad
+        contacto_correo = self.contacto_correo.seleccionar()
+        print(contacto_correo.json)
+        return contacto_correo
 
     def put(self, id_contacto_correo):
         self.contacto_correo.id_contacto_correo = id_contacto_correo
@@ -54,3 +54,16 @@ class ContactoCorreoList(Resource):
 
         self.contacto_correo.insertar()
         return {"mensaje": "correo de contacto  agregado correctamente"}, 201
+
+
+class ContactoCorreoByContactoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.contacto_correo = ContactoCorreo()
+
+    def get(self, id_contacto):
+        self.contacto_correo.id_contacto = id_contacto
+        contacto_correo = self.contacto_correo.listar_por_contacto()
+        print(contacto_correo.json)
+        return contacto_correo

@@ -26,6 +26,17 @@ class ContactoTelefono():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
+    def listar_por_contacto(self):
+        sql_query = f"SELECT * FROM vi_contacto_telefono WHERE id_contacto = {self.id_contacto}"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "contacto no encontrado"})
+
     def seleccionar(self):
         sql_query = f"SELECT * FROM vi_contacto_telefono WHERE id_contacto_telefono = {self.id_contacto_telefono}"
         print(f'sending query to mySQL: {sql_query}')
