@@ -30,7 +30,7 @@ class ContactoDireccion():
         return jsonify(r)
 
     def listar_por_contacto(self):
-        sql_query = f"SELECT * FROM vi_contacto_direccion WHERE id_contacto = {self.id_contacto}"
+        sql_query = f"SELECT * FROM `vi_contacto_direccion-localidad-departamento` WHERE id_contacto = {self.id_contacto}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         all = self.cursor.fetchall()
