@@ -4,11 +4,13 @@ from abarrotes_api_rest.extensions import db
 
 class ContactoDireccion():
 
-    def __init__(self, id_contacto_direccion=None, id_contacto=None, id_localidad=None, calle=None, numero_casa=None,
-                 zona=None, detalles=None, usuario_registro=None, fecha_registro=None, es_registro_activo=None):
+    def __init__(self, id_contacto_direccion=None, id_contacto=None, id_localidad=None, id_entidad=None, calle=None,
+                 numero_casa=None,zona=None, detalles=None, usuario_registro=None, fecha_registro=None,
+                 es_registro_activo=None):
         self.id_contacto_direccion = id_contacto_direccion
         self.id_contacto = id_contacto
         self.id_localidad = id_localidad
+        self.id_entidad= id_entidad
         self.calle = calle
         self.numero_casa = numero_casa
         self.zona = zona
@@ -29,8 +31,8 @@ class ContactoDireccion():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
-    def listar_por_contacto(self):
-        sql_query = f"SELECT * FROM `vi_contacto_direccion-localidad-departamento` WHERE id_contacto = {self.id_contacto}"
+    def listar_por_entidad(self):
+        sql_query = f"SELECT * FROM `vi_contacto_direccion-localidad-departamento` WHERE id_entidad = {self.id_entidad}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         all = self.cursor.fetchall()

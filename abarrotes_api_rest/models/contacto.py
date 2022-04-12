@@ -48,6 +48,7 @@ class Contacto():
         print(sql_query)
         self.cursor.execute(sql_query)
         self.connection.commit()
+        return self.cursor.lastrowid
 
     def eliminar(self):
         sql_query = f"UPDATE contacto SET es_registro_activo = 0 WHERE id_contacto = {self.id_contacto}"

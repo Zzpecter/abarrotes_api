@@ -33,6 +33,17 @@ class Localidad():
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
+    def seleccionar_por_departamento(self):
+        sql_query = f"SELECT * FROM vi_localidad WHERE id_departamento = {self.id_departamento}"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "localidad no encontrada"})
+
     def insertar(self):
         sql_query = f"INSERT INTO localidad (id_departamento, nombre_localidad, usuario_registro) VALUES " \
                     f"({self.id_departamento}, '{self.nombre_localidad}', '{self.usuario_registro}')"

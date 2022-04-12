@@ -11,7 +11,8 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     UsuarioNivelView, ContactoUnified, EntidadResource, EntidadList, ViDisposicionMotivoResource, \
     ViProductoEnAlmacenResource, ViProductoPresentacionUnidadResource, ViCompraProveedorResource, ViVentaClienteResource, \
     ProductoAlmacenResourceProducto, ProductoAlmacenResourceAlmacen, ProductoBusqueda, ContactoCorreoByContactoResource, \
-    ContactoDireccionByContactoResource, ContactoTelefonoByContactoResource
+    ContactoDireccionByContactoResource, ContactoTelefonoByContactoResource, LocalidadPorDepartamentoResource, \
+    ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, ViEntidadContactoDireccionResource
 
 
 
@@ -78,3 +79,8 @@ api.add_resource(ProductoBusqueda, "/productos/buscar/<string:query>", endpoint=
 api.add_resource(ContactoCorreoByContactoResource, "/contactos_correo/contacto/<int:id_contacto>", endpoint="contacto_correo_by_contacto")
 api.add_resource(ContactoDireccionByContactoResource, "/contactos_direccion/contacto/<int:id_contacto>", endpoint="contacto_direccion_by_contacto")
 api.add_resource(ContactoTelefonoByContactoResource, "/contactos_telefono/contacto/<int:id_contacto>", endpoint="contacto_telefono_by_contacto")
+api.add_resource(LocalidadPorDepartamentoResource, "/localidades/departamento/<int:id_departamento>", endpoint="localidad_departamento")
+api.add_resource(ViEntidadContactoDireccionResource, "/entidad/contacto_direccion/<int:id_entidad>", endpoint="contacto_direccion_by_entidad")
+api.add_resource(ViEntidadContactoTelefonoResource, "/entidad/contacto_telefono/<int:id_entidad>", endpoint="contacto_telefono_by_entidad")
+api.add_resource(ViEntidadContactoCorreoResource, "/entidad/contacto_correo/<int:id_entidad>", endpoint="contacto_correo_by_entidad")
+

@@ -43,3 +43,27 @@ class ViProductoPresentacionUnidadResource(Resource):
     def get(self):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_producto_presentacion_unidad()
+
+
+class ViEntidadContactoDireccionResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_entidad):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_entidad_contacto_direccion(id_entidad)
+
+
+class ViEntidadContactoTelefonoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_entidad):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_entidad_contacto_telefono(id_entidad)
+
+
+class ViEntidadContactoCorreoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_entidad):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_entidad_contacto_correo(id_entidad)

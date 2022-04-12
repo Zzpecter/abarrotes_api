@@ -54,3 +54,15 @@ class LocalidadList(Resource):
 
         self.localidad.insertar()
         return {"mensaje": "localidad agregada correctamente"}, 201
+
+class LocalidadPorDepartamentoResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.localidad = Localidad()
+
+    def get(self, id_departamento):
+        self.localidad.id_departamento = id_departamento
+        localidad = self.localidad.seleccionar_por_departamento()
+        print(localidad.json)
+        return localidad

@@ -40,8 +40,8 @@ class ContactoList(Resource):
         self.contacto.id_entidad = request.json['id_entidad']
         self.contacto.usuario_registro = request.json['usuario_registro']
 
-        self.contacto.insertar()
-        return {"mensaje": "contacto agregado correctamente"}, 201
+        id_contacto = self.contacto.insertar()
+        return {"id_contacto": id_contacto}
 
 class ContactoUnified(Resource):
     method_decorators = [jwt_required()]
