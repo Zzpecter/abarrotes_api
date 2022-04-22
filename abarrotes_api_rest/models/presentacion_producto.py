@@ -2,13 +2,15 @@ from flask import jsonify
 from abarrotes_api_rest.extensions import db
 
 
-class PresentacionProducto():
+class PresentacionProducto:
 
-    def __init__(self, id_presentacion_producto=None, id_unidad_presentacion=None, nombre_presentacion=None, usuario_registro=None,
-                 fecha_registro=None, es_registro_activo=None):
+    def __init__(self, id_presentacion_producto=None, id_unidad_presentacion=None, nombre_presentacion=None,
+                 permite_cantidad_fraccionada=None, usuario_registro=None, fecha_registro=None,
+                 es_registro_activo=None):
         self.id_presentacion_producto = id_presentacion_producto
         self.id_unidad_presentacion = id_unidad_presentacion
         self.nombre_presentacion = nombre_presentacion
+        self.permite_cantidad_fraccionada = permite_cantidad_fraccionada
         self.usuario_registro = usuario_registro
         self.fecha_registro = fecha_registro
         self.es_registro_activo = es_registro_activo
@@ -34,8 +36,11 @@ class PresentacionProducto():
         return jsonify(r)
 
     def insertar(self):
-        sql_query = f"INSERT INTO presentacion_producto (id_unidad_presentacion, nombre_presentacion, usuario_registro) VALUES " \
-                    f"({self.id_unidad_presentacion}, '{self.nombre_presentacion}', '{self.usuario_registro}')"
+        sql_query = f"INSERT INTO presentacion_producto (id_unidad_presentacion, nombre_presentacion, " \
+                    f"permite_cantidad_fraccionada, usuario_registro) VALUES " \
+                    f"({self.id_unidad_presentacion}, '{self.nombre_presentacion}', " \
+                    f"'{self.permite_cantidad_fraccionada}', '{self.usuario_registro}')"
+
         print(f'sending query to mySQL: {sql_query}')
         print(sql_query)
         self.cursor.execute(sql_query)
@@ -43,7 +48,7 @@ class PresentacionProducto():
 
     def actualizar(self):
         sql_query = f"UPDATE presentacion_producto SET id_unidad_presentacion = {self.id_unidad_presentacion}, " \
-                    f"nombre_presentacion = '{self.nombre_presentacion}', " \
+                    f"nombre_presentacion = '{self.nombre_presentacion}', permite_cantidad_fraccionada = '{self.permite_cantidad_fraccionada}', " \
                     f"usuario_registro = '{self.usuario_registro}' WHERE id_presentacion_producto = {self.id_presentacion_producto}"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)

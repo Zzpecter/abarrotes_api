@@ -22,6 +22,7 @@ class PresentacionProductoResource(Resource):
 
         self.presentacion_producto.id_unidad_presentacion = request.json['id_unidad_presentacion']
         self.presentacion_producto.nombre_presentacion = request.json['nombre_presentacion']
+        self.presentacion_producto.permite_cantidad_fraccionada = request.json['permite_cantidad_fraccionada']
         self.presentacion_producto.usuario_registro = request.json['usuario_registro']
 
         self.presentacion_producto.actualizar()
@@ -50,6 +51,7 @@ class PresentacionProductoList(Resource):
         print(f'post user endpoint; request: {request.json}')
         self.presentacion_producto.id_unidad_presentacion = request.json['id_unidad_presentacion']
         self.presentacion_producto.nombre_presentacion = request.json['nombre_presentacion']
+        self.presentacion_producto.permite_cantidad_fraccionada = request.json['permite_cantidad_fraccionada']
         self.presentacion_producto.usuario_registro = request.json['usuario_registro']
 
         self.presentacion_producto.insertar()
