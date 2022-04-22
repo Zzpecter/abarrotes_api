@@ -53,5 +53,16 @@ class ClienteList(Resource):
         self.cliente.nit_ci = request.json['nit_ci']
         self.cliente.usuario_registro = request.json['usuario_registro']
 
-        self.cliente.insertar()
-        return {"mensaje": "cliente agregado correctamente"}, 201
+        id_cliente = self.cliente.insertar()
+        return {"id_cliente": id_cliente}
+
+
+class ClienteNit(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.cliente = Cliente()
+
+    def get(self, nit_ci):
+        self.cliente.nit_ci = nit_ci
+        return self.cliente.seleccionar_por_nit()

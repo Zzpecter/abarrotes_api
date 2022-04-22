@@ -29,20 +29,41 @@ class ViDisposicionMotivoResource(Resource):
         return CUSTOM_VIEW.listar_vi_disposicion_motivo()
 
 
-class ViProductoEnAlmacenResource(Resource):
+class ViProductoEnAlmacenList(Resource):
     method_decorators = [jwt_required()]
 
     def get(self):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_producto_en_almacen()
 
+class ViProductoEnAlmacenResource(Resource):
+    method_decorators = [jwt_required()]
 
-class ViProductoPresentacionUnidadResource(Resource):
+    def get(self, id_producto):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.seleccionar_vi_producto_en_almacen(id_producto)
+
+class ViProductoEnAlmacenBuscar(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, query):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.buscar_vi_producto_en_almacen(query)
+
+class ViProductoPresentacionUnidadList(Resource):
     method_decorators = [jwt_required()]
 
     def get(self):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_producto_presentacion_unidad()
+
+
+class ViProductoPresentacionUnidadResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_producto):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.seleccionar_vi_producto_presentacion_unidad(id_producto)
 
 
 class ViEntidadContactoDireccionResource(Resource):

@@ -1,6 +1,6 @@
 from abarrotes_api_rest.api.resources.usuario import UserResource, UserList, UsuarioNivelView
 from abarrotes_api_rest.api.resources.proveedor import ProveedorResource, ProveedorList
-from abarrotes_api_rest.api.resources.cliente import ClienteResource, ClienteList
+from abarrotes_api_rest.api.resources.cliente import ClienteResource, ClienteList, ClienteNit
 from abarrotes_api_rest.api.resources.localidad import LocalidadResource, LocalidadList, LocalidadPorDepartamentoResource
 from abarrotes_api_rest.api.resources.departamento import DepartamentoResource, DepartamentoList
 from abarrotes_api_rest.api.resources.contacto import ContactoResource, ContactoList, ContactoUnified
@@ -26,8 +26,9 @@ from abarrotes_api_rest.api.resources.factura import FacturaResource, FacturaLis
 from abarrotes_api_rest.api.resources.nivel import NivelResource, NivelList
 from abarrotes_api_rest.api.resources.entidad import EntidadList, EntidadResource
 from abarrotes_api_rest.api.resources.custom_views import ViVentaClienteResource, ViCompraProveedorResource, \
-    ViProductoEnAlmacenResource, ViProductoPresentacionUnidadResource, ViDisposicionMotivoResource, \
-    ViEntidadContactoDireccionResource, ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource
+    ViProductoEnAlmacenResource, ViProductoPresentacionUnidadList, ViDisposicionMotivoResource, \
+    ViEntidadContactoDireccionResource, ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, \
+    ViProductoPresentacionUnidadResource, ViProductoEnAlmacenList, ViProductoEnAlmacenBuscar
 
 
 __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "ClienteResource", "ClienteList",
@@ -40,7 +41,8 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "DetalleSalidaResource", "DetalleSalidaList", "DetalleEntradaResource", "DetalleEntradaList",
            "CompraResource", "CompraList", "FacturaResource", "FacturaList", "NivelResource", "NivelList",
            "UsuarioNivelView", "ContactoUnified", "EntidadResource", "EntidadList", "ViVentaClienteResource",
-           "ViCompraProveedorResource", "ViProductoEnAlmacenResource", "ViProductoPresentacionUnidadResource",
+           "ViCompraProveedorResource", "ViProductoEnAlmacenResource", "ViProductoPresentacionUnidadList",
            "ViDisposicionMotivoResource", "ProductoAlmacenResourceProducto", "ProductoAlmacenResourceAlmacen",
            "ProductoBusqueda", "LocalidadPorDepartamentoResource", "ViEntidadContactoDireccionResource",
-           "ViEntidadContactoCorreoResource", "ViEntidadContactoTelefonoResource"]
+           "ViEntidadContactoCorreoResource", "ViEntidadContactoTelefonoResource",
+           "ViProductoPresentacionUnidadResource", "ClienteNit", "ViProductoEnAlmacenList", "ViProductoEnAlmacenBuscar"]

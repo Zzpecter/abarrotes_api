@@ -55,5 +55,5 @@ class CompraList(Resource):
         self.compra.monto_total = request.json['monto_total']
         self.compra.usuario_registro = request.json['usuario_registro']
 
-        self.compra.insertar()
-        return {"mensaje": "compra agregada correctamente"}, 201
+        id_compra = self.compra.insertar()
+        return {"id_compra": id_compra}

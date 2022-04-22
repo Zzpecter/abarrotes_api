@@ -37,10 +37,13 @@ class Cliente():
         sql_query = f"SELECT * FROM vi_cliente WHERE nit_ci = '{self.nit_ci}'"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
-        print(description[0] for description in self.cursor.description)
-        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
-        print(f'response from mySQL: {r}')
-        return r
+
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+            return jsonify(r)
+        return jsonify({"message": "cliente no encontrado"})
 
     def insertar(self):
         sql_query = f"INSERT INTO cliente (id_entidad, razon_social, nit_ci, usuario_registro) VALUES " \
@@ -49,6 +52,7 @@ class Cliente():
         print(sql_query)
         self.cursor.execute(sql_query)
         self.connection.commit()
+        return self.cursor.lastrowid
 
     def actualizar(self):
         sql_query = f"UPDATE cliente SET razon_social = '{self.razon_social}', nit_ci = '{self.nit_ci}', " \

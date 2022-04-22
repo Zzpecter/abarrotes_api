@@ -54,6 +54,7 @@ class Compra():
         print(sql_query)
         self.cursor.execute(sql_query)
         self.connection.commit()
+        return self.cursor.lastrowid
 
     def actualizar(self):
         sql_query = f"UPDATE compra SET id_usuario = {self.id_usuario}, id_proveedor = {self.id_proveedor}, " \

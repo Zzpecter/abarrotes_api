@@ -4,12 +4,14 @@ from abarrotes_api_rest.extensions import db
 
 class Producto():
 
-    def __init__(self, id_producto=None, id_presentacion_producto=None, nombre=None, codigo=None, usuario_registro=None,
-                 fecha_registro=None, es_registro_activo=None):
+    def __init__(self, id_producto=None, id_presentacion_producto=None, nombre=None, codigo=None, precio_compra=None,
+                 precio_venta=None, usuario_registro=None, fecha_registro=None, es_registro_activo=None):
         self.id_producto = id_producto
         self.id_presentacion_producto = id_presentacion_producto
         self.nombre = nombre
         self.codigo = codigo
+        self.precio_compra = precio_compra
+        self.precio_venta = precio_venta
         self.usuario_registro = usuario_registro
         self.fecha_registro = fecha_registro
         self.es_registro_activo = es_registro_activo
@@ -35,7 +37,7 @@ class Producto():
         return jsonify(r)
 
     def buscar(self, query):
-        sql_query = f"SELECT * FROM vi_producto WHERE nombre rlike '{query}' or codigo rlike '{query}'"
+        sql_query = f"SELECT * FROM vi_producto_presentacion_unidad WHERE nombre rlike '{query}' or codigo rlike '{query}'"
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         all = self.cursor.fetchall()
