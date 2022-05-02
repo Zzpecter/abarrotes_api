@@ -51,5 +51,5 @@ class FacturaList(Resource):
         self.factura.datos_codigo_QR = request.json['datos_codigo_QR']
         self.factura.usuario_registro = request.json['usuario_registro']
 
-        self.factura.insertar()
-        return {"mensaje": "factura agregada correctamente"}, 201
+        id_factura = self.factura.insertar()
+        return {"id_factura": id_factura}

@@ -36,6 +36,18 @@ class DetalleSalidaResource(Resource):
         return {"mensaje": "detalle_salida eliminado correctamente"}
 
 
+class DetalleSalidaByVenta(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.detalle_salida = DetalleSalida()
+
+    def get(self, id_venta):
+        self.detalle_salida.id_salida_producto = id_venta
+        detalle_salida = self.detalle_salida.seleccionar_por_venta()
+        print(detalle_salida.json)
+        return detalle_salida
+
 class DetalleSalidaList(Resource):
     """Creation and get_all
     """

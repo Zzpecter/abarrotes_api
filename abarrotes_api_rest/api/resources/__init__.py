@@ -1,4 +1,4 @@
-from abarrotes_api_rest.api.resources.usuario import UserResource, UserList, UsuarioNivelView
+from abarrotes_api_rest.api.resources.usuario import UserResource, UserList, UsuarioNivelView, UserByLogin
 from abarrotes_api_rest.api.resources.proveedor import ProveedorResource, ProveedorList
 from abarrotes_api_rest.api.resources.cliente import ClienteResource, ClienteList, ClienteNit
 from abarrotes_api_rest.api.resources.localidad import LocalidadResource, LocalidadList, LocalidadPorDepartamentoResource
@@ -19,7 +19,7 @@ from abarrotes_api_rest.api.resources.producto_almacen import ProductoAlmacenRes
 from abarrotes_api_rest.api.resources.disposicion import DisposicionList, DisposicionResource
 from abarrotes_api_rest.api.resources.motivo import MotivoResource, MotivoList
 from abarrotes_api_rest.api.resources.venta import VentaResource, VentaList
-from abarrotes_api_rest.api.resources.detalle_salida import DetalleSalidaResource, DetalleSalidaList
+from abarrotes_api_rest.api.resources.detalle_salida import DetalleSalidaResource, DetalleSalidaList, DetalleSalidaByVenta
 from abarrotes_api_rest.api.resources.detalle_entrada import DetalleEntradaResource, DetalleEntradaList
 from abarrotes_api_rest.api.resources.compra import CompraResource, CompraList
 from abarrotes_api_rest.api.resources.factura import FacturaResource, FacturaList
@@ -28,7 +28,10 @@ from abarrotes_api_rest.api.resources.entidad import EntidadList, EntidadResourc
 from abarrotes_api_rest.api.resources.custom_views import ViVentaClienteResource, ViCompraProveedorResource, \
     ViProductoEnAlmacenResource, ViProductoPresentacionUnidadList, ViDisposicionMotivoResource, \
     ViEntidadContactoDireccionResource, ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, \
-    ViProductoPresentacionUnidadResource, ViProductoEnAlmacenList, ViProductoEnAlmacenBuscar
+    ViProductoPresentacionUnidadResource, ViProductoEnAlmacenList, ViProductoEnAlmacenBuscar, \
+    ViVentaClientePorFechaResource, ViVentaClientePorClienteResource, ViVentaClienteById
+from abarrotes_api_rest.api.resources.status import Status
+from abarrotes_api_rest.api.resources.salida_producto import SalidaProductoList, SalidaProductoResource
 
 
 __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "ClienteResource", "ClienteList",
@@ -45,4 +48,6 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "ViDisposicionMotivoResource", "ProductoAlmacenResourceProducto", "ProductoAlmacenResourceAlmacen",
            "ProductoBusqueda", "LocalidadPorDepartamentoResource", "ViEntidadContactoDireccionResource",
            "ViEntidadContactoCorreoResource", "ViEntidadContactoTelefonoResource",
-           "ViProductoPresentacionUnidadResource", "ClienteNit", "ViProductoEnAlmacenList", "ViProductoEnAlmacenBuscar"]
+           "ViProductoPresentacionUnidadResource", "ClienteNit", "ViProductoEnAlmacenList", "ViProductoEnAlmacenBuscar",
+           "Status", "UserByLogin", "SalidaProductoList", "SalidaProductoResource", "ViVentaClientePorFechaResource",
+           "ViVentaClientePorClienteResource", "ViVentaClienteById", "DetalleSalidaByVenta"]

@@ -45,6 +45,7 @@ class Factura():
         print(sql_query)
         self.cursor.execute(sql_query)
         self.connection.commit()
+        return self.cursor.lastrowid
 
     def actualizar(self):
         sql_query = f"UPDATE factura SET codigo_control = '{self.codigo_control}', datos_codigo_QR = '{self.datos_codigo_QR}', " \

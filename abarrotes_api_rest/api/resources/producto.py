@@ -58,8 +58,8 @@ class ProductoList(Resource):
         self.producto.precio_venta = request.json['precio_venta']
         self.producto.usuario_registro = request.json['usuario_registro']
 
-        self.producto.insertar()
-        return {"mensaje": "producto agregado correctamente"}, 201
+        id_producto = self.producto.insertar()
+        return {"id_producto": id_producto}
 
 
 class ProductoBusqueda(Resource):

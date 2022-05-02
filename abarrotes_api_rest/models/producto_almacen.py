@@ -23,6 +23,11 @@ class ProductoAlmacen():
         self.cursor.execute(sql_query)
         print(description[0] for description in self.cursor.description)
         r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
+
+        # Convert decimal to float for json.
+        for idx, response in enumerate(r):
+            r[idx]['stock_actual'] = float(response['stock_actual'])
+
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
@@ -31,6 +36,10 @@ class ProductoAlmacen():
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
         r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()][0]
+
+        # Convert decimal to float for json.
+        r['stock_actual'] = float(r['stock_actual'])
+
         print(f'response from mySQL: {r}')
         return jsonify(r)
 
@@ -43,7 +52,12 @@ class ProductoAlmacen():
         if len(all) > 0:
             r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
             print(f'response from mySQL: {r}')
+
+            # Convert decimal to float for json.
+            r['stock_actual'] = float(r['stock_actual'])
+
             return jsonify(r)
+
         return jsonify({"message": "producto no encontrado"})
 
 
@@ -55,6 +69,10 @@ class ProductoAlmacen():
         if len(all) > 0:
             r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
             print(f'response from mySQL: {r}')
+
+            # Convert decimal to float for json.
+            r['stock_actual'] = float(r['stock_actual'])
+
             return jsonify(r)
         return jsonify({"message": "almacen no encontrado"})
 

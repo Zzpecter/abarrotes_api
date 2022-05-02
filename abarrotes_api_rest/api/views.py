@@ -13,7 +13,9 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     ProductoAlmacenResourceProducto, ProductoAlmacenResourceAlmacen, ProductoBusqueda, ContactoCorreoByContactoResource, \
     ContactoDireccionByContactoResource, ContactoTelefonoByContactoResource, LocalidadPorDepartamentoResource, \
     ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, ViEntidadContactoDireccionResource, \
-    ViProductoPresentacionUnidadResource, ClienteNit, ViProductoEnAlmacenBuscar, ViProductoEnAlmacenList
+    ViProductoPresentacionUnidadResource, ClienteNit, ViProductoEnAlmacenBuscar, ViProductoEnAlmacenList, Status, \
+    UserByLogin, SalidaProductoList, SalidaProductoResource, ViVentaClientePorFechaResource, \
+    ViVentaClientePorClienteResource, ViVentaClienteById, DetalleSalidaByVenta
 
 
 
@@ -88,4 +90,10 @@ api.add_resource(ViEntidadContactoDireccionResource, "/entidad/contacto_direccio
 api.add_resource(ViEntidadContactoTelefonoResource, "/entidad/contacto_telefono/<int:id_entidad>", endpoint="contacto_telefono_by_entidad")
 api.add_resource(ViEntidadContactoCorreoResource, "/entidad/contacto_correo/<int:id_entidad>", endpoint="contacto_correo_by_entidad")
 api.add_resource(ClienteNit, "/cliente/nit/<string:nit_ci>", endpoint="cliente_by_nit")
-
+api.add_resource(Status, "/status", endpoint="api_status")
+api.add_resource(UserByLogin, "/users/login/<string:login_usuario>", endpoint="user_by_login")
+api.add_resource(SalidaProductoResource, "/salida_producto/<int:id_salida_producto>", endpoint="salida_producto_by_id")
+api.add_resource(SalidaProductoList, "/salida_producto", endpoint="salida_producto")
+api.add_resource(ViVentaClientePorFechaResource, "/views/venta_cliente/<string:desde>/<string:hasta>", endpoint="venta_cliente_by_date")
+api.add_resource(ViVentaClienteById, "/views/venta_cliente/<int:id_venta>", endpoint="venta_cliente_by_id")
+api.add_resource(DetalleSalidaByVenta, "/detalle_salida/venta/<int:id_venta>", endpoint="detalle_salida_by_venta")

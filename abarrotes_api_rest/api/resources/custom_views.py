@@ -12,6 +12,27 @@ class ViVentaClienteResource(Resource):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_venta_cliente()
 
+class ViVentaClienteById(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_venta):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.seleccionar_vi_venta_cliente(id_venta)
+
+class ViVentaClientePorFechaResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, desde, hasta):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_venta_cliente_por_fecha(desde, hasta)
+
+
+class ViVentaClientePorClienteResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, query):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_venta_cliente_por_cliente(query)
 
 class ViCompraProveedorResource(Resource):
     method_decorators = [jwt_required()]

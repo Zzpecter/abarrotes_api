@@ -10,7 +10,7 @@ from flask_jwt_extended import (
 from abarrotes_api_rest.models import Usuario
 from abarrotes_api_rest.extensions import pwd_context, jwt
 from abarrotes_api_rest.auth.helpers import revocar_token, is_token_revoked, add_token_to_database
-
+import json
 
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -26,13 +26,16 @@ def login():
         return jsonify({"msg": "Missing username or password"}), 400
 
     usuario = Usuario(login_usuario=login_usuario)
-    user = usuario.seleccionar_por_login()[0]
-    print(user)
-    print(password_usuario)
-    print(user['password_usuario'])
-    if user is None or not pwd_context.verify(password_usuario, user['password_usuario']):
-        return jsonify({"msg": "Bad credentials"}), 400
 
+    user = json.loads(usuario.seleccionar_por_login().get_data().decode("utf-8"))
+    print(f'JSON user: {user}')
+    print(user['login_usuario'])
+    if not user.get('login_usuario', False):
+        print('no user')
+        return jsonify({"msg": "Bad credentials"}), 400
+    if not pwd_context.verify(password_usuario, user['password_usuario']):
+        print('bad pass')
+        return jsonify({"msg": "Bad credentials"}), 400
     access_token = create_access_token(identity=user['id_entidad'])
     refresh_token = create_refresh_token(identity=user['id_entidad'])
     add_token_to_database(access_token, app.config["JWT_IDENTITY_CLAIM"])
