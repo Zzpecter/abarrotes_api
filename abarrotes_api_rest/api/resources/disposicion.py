@@ -22,6 +22,9 @@ class DisposicionResource(Resource):
 
         self.disposicion.id_usuario = request.json['id_usuario']
         self.disposicion.id_motivo = request.json['id_motivo']
+        self.disposicion.id_producto = request.json['id_producto']
+        self.disposicion.cantidad = request.json['cantidad']
+        self.disposicion.fecha = request.json['fecha']
         self.disposicion.comentario = request.json['comentario']
         self.disposicion.usuario_registro = request.json['usuario_registro']
 
@@ -52,6 +55,9 @@ class DisposicionList(Resource):
         self.disposicion.id_salida_producto = request.json['id_salida_producto']
         self.disposicion.id_usuario = request.json['id_usuario']
         self.disposicion.id_motivo = request.json['id_motivo']
+        self.disposicion.id_producto = request.json['id_producto']
+        self.disposicion.cantidad = request.json['cantidad']
+        self.disposicion.fecha = request.json['fecha']
         self.disposicion.comentario = request.json['comentario']
         self.disposicion.usuario_registro = request.json['usuario_registro']
 

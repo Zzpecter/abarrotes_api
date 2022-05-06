@@ -15,7 +15,9 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, ViEntidadContactoDireccionResource, \
     ViProductoPresentacionUnidadResource, ClienteNit, ViProductoEnAlmacenBuscar, ViProductoEnAlmacenList, Status, \
     UserByLogin, SalidaProductoList, SalidaProductoResource, ViVentaClientePorFechaResource, \
-    ViVentaClientePorClienteResource, ViVentaClienteById, DetalleSalidaByVenta
+    ViVentaClientePorClienteResource, ViVentaClienteById, DetalleSalidaByVenta, ViDisposicionUsuarioMotivo, \
+    ViCompraProveedorPorProveedorResource, ViCompraProveedorPorFechaResource, ViCompraProveedorById, \
+    DetalleEntradaByCompra
 
 
 
@@ -97,3 +99,8 @@ api.add_resource(SalidaProductoList, "/salida_producto", endpoint="salida_produc
 api.add_resource(ViVentaClientePorFechaResource, "/views/venta_cliente/<string:desde>/<string:hasta>", endpoint="venta_cliente_by_date")
 api.add_resource(ViVentaClienteById, "/views/venta_cliente/<int:id_venta>", endpoint="venta_cliente_by_id")
 api.add_resource(DetalleSalidaByVenta, "/detalle_salida/venta/<int:id_venta>", endpoint="detalle_salida_by_venta")
+api.add_resource(ViDisposicionUsuarioMotivo, "/disposicion/completo", endpoint="disposicion_completo")
+api.add_resource(ViCompraProveedorPorFechaResource, "/views/compra_proveedor/<string:desde>/<string:hasta>", endpoint="compra_proveedor_by_date")
+api.add_resource(ViCompraProveedorById, "/views/compra_proveedor/<int:id_compra>", endpoint="compra_proveedor_by_id")
+api.add_resource(ViCompraProveedorPorProveedorResource, "/views/compra_proveedor/<string:query>", endpoint="compra_proveedor_by_proveedor")
+api.add_resource(DetalleEntradaByCompra, "/detalle_entrada/compra/<int:id_compra>", endpoint="detalle_entrada_by_compra")

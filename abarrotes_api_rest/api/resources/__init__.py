@@ -19,8 +19,10 @@ from abarrotes_api_rest.api.resources.producto_almacen import ProductoAlmacenRes
 from abarrotes_api_rest.api.resources.disposicion import DisposicionList, DisposicionResource
 from abarrotes_api_rest.api.resources.motivo import MotivoResource, MotivoList
 from abarrotes_api_rest.api.resources.venta import VentaResource, VentaList
-from abarrotes_api_rest.api.resources.detalle_salida import DetalleSalidaResource, DetalleSalidaList, DetalleSalidaByVenta
-from abarrotes_api_rest.api.resources.detalle_entrada import DetalleEntradaResource, DetalleEntradaList
+from abarrotes_api_rest.api.resources.detalle_salida import DetalleSalidaResource, DetalleSalidaList, \
+    DetalleSalidaByVenta
+from abarrotes_api_rest.api.resources.detalle_entrada import DetalleEntradaResource, DetalleEntradaList, \
+    DetalleEntradaByCompra
 from abarrotes_api_rest.api.resources.compra import CompraResource, CompraList
 from abarrotes_api_rest.api.resources.factura import FacturaResource, FacturaList
 from abarrotes_api_rest.api.resources.nivel import NivelResource, NivelList
@@ -29,7 +31,8 @@ from abarrotes_api_rest.api.resources.custom_views import ViVentaClienteResource
     ViProductoEnAlmacenResource, ViProductoPresentacionUnidadList, ViDisposicionMotivoResource, \
     ViEntidadContactoDireccionResource, ViEntidadContactoTelefonoResource, ViEntidadContactoCorreoResource, \
     ViProductoPresentacionUnidadResource, ViProductoEnAlmacenList, ViProductoEnAlmacenBuscar, \
-    ViVentaClientePorFechaResource, ViVentaClientePorClienteResource, ViVentaClienteById
+    ViVentaClientePorFechaResource, ViVentaClientePorClienteResource, ViVentaClienteById, ViDisposicionUsuarioMotivo, \
+    ViCompraProveedorPorFechaResource, ViCompraProveedorById, ViCompraProveedorPorProveedorResource
 from abarrotes_api_rest.api.resources.status import Status
 from abarrotes_api_rest.api.resources.salida_producto import SalidaProductoList, SalidaProductoResource
 
@@ -50,4 +53,6 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "ViEntidadContactoCorreoResource", "ViEntidadContactoTelefonoResource",
            "ViProductoPresentacionUnidadResource", "ClienteNit", "ViProductoEnAlmacenList", "ViProductoEnAlmacenBuscar",
            "Status", "UserByLogin", "SalidaProductoList", "SalidaProductoResource", "ViVentaClientePorFechaResource",
-           "ViVentaClientePorClienteResource", "ViVentaClienteById", "DetalleSalidaByVenta"]
+           "ViVentaClientePorClienteResource", "ViVentaClienteById", "DetalleSalidaByVenta",
+           "ViDisposicionUsuarioMotivo", "ViCompraProveedorPorFechaResource", "ViCompraProveedorPorProveedorResource",
+           "ViCompraProveedorById", "DetalleEntradaByCompra"]

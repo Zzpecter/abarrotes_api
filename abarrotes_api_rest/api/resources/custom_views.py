@@ -34,6 +34,7 @@ class ViVentaClientePorClienteResource(Resource):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_venta_cliente_por_cliente(query)
 
+
 class ViCompraProveedorResource(Resource):
     method_decorators = [jwt_required()]
 
@@ -41,6 +42,29 @@ class ViCompraProveedorResource(Resource):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_compra_proveedor()
 
+
+class ViCompraProveedorById(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, id_compra):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.seleccionar_vi_compra_proveedor(id_compra)
+
+
+class ViCompraProveedorPorFechaResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, desde, hasta):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_compra_proveedor_por_fecha(desde, hasta)
+
+
+class ViCompraProveedorPorProveedorResource(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, query):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_compra_proveedor_por_proveedor(query)
 
 class ViDisposicionMotivoResource(Resource):
     method_decorators = [jwt_required()]
@@ -109,3 +133,11 @@ class ViEntidadContactoCorreoResource(Resource):
     def get(self, id_entidad):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_entidad_contacto_correo(id_entidad)
+
+
+class ViDisposicionUsuarioMotivo(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_vi_disposicion_usuario_motivo()

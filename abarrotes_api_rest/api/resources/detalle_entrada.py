@@ -36,6 +36,19 @@ class DetalleEntradaResource(Resource):
         return {"mensaje": "detalle_entrada eliminado correctamente"}
 
 
+class DetalleEntradaByCompra(Resource):
+    method_decorators = [jwt_required()]
+
+    def __init__(self):
+        self.detalle_entrada = DetalleEntrada()
+
+    def get(self, id_compra):
+        self.detalle_entrada.id_compra = id_compra
+        detalle_entrada = self.detalle_entrada.seleccionar_por_compra()
+        print(detalle_entrada.json)
+        return detalle_entrada
+
+
 class DetalleEntradaList(Resource):
     """Creation and get_all
     """

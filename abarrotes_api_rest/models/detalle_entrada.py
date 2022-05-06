@@ -43,6 +43,22 @@ class DetalleEntrada():
 
         return jsonify(r)
 
+    def seleccionar_por_compra(self):
+        sql_query = f"SELECT * FROM `vi_detalle_entrada-producto` WHERE id_compra = {self.id_compra}"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            for idx, response in enumerate(r):
+                r[idx]['precio_unidad'] = float(response['precio_unidad'])
+                r[idx]['cantidad'] = float(response['cantidad'])
+
+            return jsonify(r)
+        return jsonify({"message": "detalle_entrada no encontrado"})
+
     def insertar(self):
         sql_query = f"INSERT INTO detalle_entrada (id_compra, id_producto, cantidad, precio_unidad, usuario_registro) VALUES " \
                     f"({self.id_compra}, {self.id_producto}, {self.cantidad}, {self.precio_unidad}, '{self.usuario_registro}')"

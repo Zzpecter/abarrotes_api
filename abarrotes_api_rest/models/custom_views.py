@@ -82,9 +82,70 @@ class CustomViews:
         sql_query = 'SELECT * FROM vi_compra_proveedor'
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
-        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
-        print(f'response from mySQL: {r}')
-        return jsonify(r)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['fecha'] = response['fecha'].strftime("%m-%d-%Y %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "compra no encontrada"})
+
+    def seleccionar_vi_compra_proveedor(self, id_compra):
+        sql_query = f'SELECT * FROM vi_compra_proveedor WHERE id_compra = {id_compra}'
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            r['fecha'] = r['fecha'].strftime("%m-%d-%Y %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "compra no encontrada"})
+
+    def listar_vi_compra_proveedor_por_fecha(self, desde, hasta):
+        desde = datetime.strptime(desde, '%m-%d-%Y')
+        hasta = datetime.strptime(hasta, '%m-%d-%Y')
+        sql_query = f"SELECT * FROM vi_compra_proveedor WHERE fecha between '{desde}' and '{hasta}'"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['fecha'] = response['fecha'].strftime("%m-%d-%Y %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "compra no encontrada"})
+
+    def listar_vi_compra_proveedor_por_proveedor(self, query):
+        sql_query = f"SELECT * FROM vi_compra_proveedor WHERE proveedor rlike '{query}'"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['fecha'] = response['fecha'].strftime("%m-%d-%Y %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "compra no encontrada"})
 
     def listar_vi_disposicion_motivo(self):
         sql_query = 'SELECT * FROM vi_disposicion_motivo'
@@ -178,3 +239,21 @@ class CustomViews:
             print(f'response from mySQL: {r}')
             return jsonify(r)
         return jsonify({"message": "contacto no encontrado"})
+
+
+    def listar_vi_disposicion_usuario_motivo(self):
+        sql_query = 'SELECT * FROM `vi_disposicion-usuario-motivo`'
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['fecha'] = response['fecha'].strftime("%m-%d-%Y %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "disposicion no encontrada"})
