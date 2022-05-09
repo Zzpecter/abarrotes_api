@@ -17,7 +17,7 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     UserByLogin, SalidaProductoList, SalidaProductoResource, ViVentaClientePorFechaResource, \
     ViVentaClientePorClienteResource, ViVentaClienteById, DetalleSalidaByVenta, ViDisposicionUsuarioMotivo, \
     ViCompraProveedorPorProveedorResource, ViCompraProveedorPorFechaResource, ViCompraProveedorById, \
-    DetalleEntradaByCompra
+    DetalleEntradaByCompra, DescuentoList, DescuentoResource, DescuentoByProducto
 
 
 
@@ -104,3 +104,6 @@ api.add_resource(ViCompraProveedorPorFechaResource, "/views/compra_proveedor/<st
 api.add_resource(ViCompraProveedorById, "/views/compra_proveedor/<int:id_compra>", endpoint="compra_proveedor_by_id")
 api.add_resource(ViCompraProveedorPorProveedorResource, "/views/compra_proveedor/<string:query>", endpoint="compra_proveedor_by_proveedor")
 api.add_resource(DetalleEntradaByCompra, "/detalle_entrada/compra/<int:id_compra>", endpoint="detalle_entrada_by_compra")
+api.add_resource(DescuentoResource, "/descuentos/<int:id_descuento>", endpoint="descuento_by_id")
+api.add_resource(DescuentoList, "/descuentos", endpoint="descuento")
+api.add_resource(DescuentoByProducto, "/descuentos/producto/<int:id_producto>", endpoint="descuento_by_producto")
