@@ -21,15 +21,18 @@ class Descuento:
         sql_query = 'SELECT * FROM vi_descuento_producto'
         print(f'sending query to mySQL: {sql_query}')
         self.cursor.execute(sql_query)
-        print(description[0] for description in self.cursor.description)
-        r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in self.cursor.fetchall()]
-        print(f'response from mySQL: {r}')
 
-        # Convert decimal to float for json.
-        for idx, response in enumerate(r):
-            r[idx]['precio_oferta'] = float(response['precio_oferta'])
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+            for idx, response in enumerate(r):
+                r[idx]['precio_oferta'] = float(response['precio_oferta'])
+                r[idx]['fecha_expiracion'] = r[idx]['fecha_expiracion'].strftime("%Y-%m-%d %H:%M:%S")
+            print(f'formatted response from mySQL: {r}')
 
-        return jsonify(r)
+            return jsonify(r)
+        return jsonify({"message": "descuento no encontrado"})
 
     def seleccionar(self):
         sql_query = f"SELECT * FROM vi_descuento_producto WHERE id_descuento = {self.id_descuento}"
@@ -39,8 +42,10 @@ class Descuento:
         if len(all) > 0:
             r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
             print(f'response from mySQL: {r}')
-            r['precio_unidad'] = float(r['precio_unidad'])
-            print(f'formatted response from mySQL: {r}')
+
+            # Convert decimal to float for json.
+            r['precio_oferta'] = float(r['precio_oferta'])
+            r['fecha_expiracion'] = r['fecha_expiracion'].strftime("%Y-%m-%d %H:%M:%S")
 
             return jsonify(r)
         return jsonify({"message": "descuento no encontrado"})
@@ -54,6 +59,7 @@ class Descuento:
             r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all][0]
             print(f'response from mySQL: {r}')
             r['precio_unidad'] = float(r['precio_unidad'])
+            r['fecha_expiracion'] = r['fecha_expiracion'].strftime("%Y-%m-%d %H:%M:%S")
             print(f'formatted response from mySQL: {r}')
 
             return jsonify(r)
@@ -61,11 +67,12 @@ class Descuento:
 
     def insertar(self):
         sql_query = f"INSERT INTO descuento (id_producto, precio_oferta, fecha_expiracion, usuario_registro) VALUES " \
-                    f"({self.id_producto}, {self.precio_oferta}, {self.fecha_expiracion}, '{self.usuario_registro}')"
+                    f"({self.id_producto}, {self.precio_oferta}, '{self.fecha_expiracion}', '{self.usuario_registro}')"
         print(f'sending query to mySQL: {sql_query}')
         print(sql_query)
         self.cursor.execute(sql_query)
         self.connection.commit()
+        return self.cursor.lastrowid
 
     def actualizar(self):
         sql_query = f"UPDATE descuento SET id_producto = {self.id_producto}, " \

@@ -67,5 +67,5 @@ class DescuentoList(Resource):
         self.descuento.fecha_expiracion = request.json['fecha_expiracion']
         self.descuento.usuario_registro = request.json['usuario_registro']
 
-        self.descuento.insertar()
-        return {"mensaje": "descuento agregado correctamente"}, 201
+        id_descuento = self.descuento.insertar()
+        return {"id_descuento": id_descuento}
