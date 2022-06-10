@@ -141,3 +141,19 @@ class ViDisposicionUsuarioMotivo(Resource):
     def get(self):
         CUSTOM_VIEW = CustomViews()
         return CUSTOM_VIEW.listar_vi_disposicion_usuario_motivo()
+
+
+class ViReporteVentasSinProducto(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, fecha_desde, fecha_hasta):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_reporte_ventas_sin_producto(fecha_desde, fecha_hasta)
+
+
+class ViReporteVentasConProducto(Resource):
+    method_decorators = [jwt_required()]
+
+    def get(self, fecha_desde, fecha_hasta, id_producto):
+        CUSTOM_VIEW = CustomViews()
+        return CUSTOM_VIEW.listar_reporte_ventas_con_producto(fecha_desde, fecha_hasta, id_producto)
