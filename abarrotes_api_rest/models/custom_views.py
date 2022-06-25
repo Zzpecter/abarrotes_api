@@ -278,7 +278,7 @@ class CustomViews:
             print(f'formatted response from mySQL: {r}')
 
             return jsonify(r)
-        return jsonify({"message": "ventas no encontradas"})
+        return jsonify({"message": "datos de reporte no encontrados"})
 
     def listar_reporte_ventas_con_producto(self, fecha_desde, fecha_hasta, id_producto):
         fecha_desde = datetime.strptime(fecha_desde, '%m-%d-%Y')
@@ -300,4 +300,4 @@ class CustomViews:
             print(f'formatted response from mySQL: {r}')
 
             return jsonify(r)
-        return jsonify({"message": "ventas no encontradas"})
+        return jsonify({"message": "datos de reporte no encontrados"})

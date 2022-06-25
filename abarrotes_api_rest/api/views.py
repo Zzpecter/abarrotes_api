@@ -108,5 +108,5 @@ api.add_resource(DetalleEntradaByCompra, "/detalle_entrada/compra/<int:id_compra
 api.add_resource(DescuentoResource, "/descuentos/<int:id_descuento>", endpoint="descuento_by_id")
 api.add_resource(DescuentoList, "/descuentos", endpoint="descuento")
 api.add_resource(DescuentoByProducto, "/descuentos/producto/<int:id_producto>", endpoint="descuento_by_producto")
-api.add_resource(ViReporteVentasSinProducto, "/reportes/ventas/<string:desde>/<string:hasta>", endpoint="descuento")
-api.add_resource(ViReporteVentasConProducto, "/reportes/ventas/<string:desde>/<string:hasta>/<int:id_producto>", endpoint="descuento_by_producto")
+api.add_resource(ViReporteVentasSinProducto, "/reportes/ventas/<string:fecha_desde>/<string:fecha_hasta>", endpoint="reporte_venta_sin_producto")
+api.add_resource(ViReporteVentasConProducto, "/reportes/ventas/<string:fecha_desde>/<string:fecha_hasta>/<int:id_producto>", endpoint="reporte_venta_con_producto")
