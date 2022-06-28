@@ -1,8 +1,9 @@
-from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 from abarrotes_api_rest.models import CustomViews
-
+import pandas as pd
+import abarrotes_api_rest.helpers as helpers
+import abarrotes_api_rest.models.pdf_ventas as PDF
 
 
 class ViVentaClienteResource(Resource):
@@ -148,7 +149,24 @@ class ViReporteVentasSinProducto(Resource):
 
     def get(self, fecha_desde, fecha_hasta):
         CUSTOM_VIEW = CustomViews()
-        return CUSTOM_VIEW.listar_reporte_ventas_sin_producto(fecha_desde, fecha_hasta)
+        returned_json = CUSTOM_VIEW.listar_reporte_ventas_sin_producto(fecha_desde, fecha_hasta)
+        # TODO: agregar logica para generar pdf
+        # 1. cargar los datos devueltos en un pandas dataframe
+        print(f'json: {returned_json.json}')
+        df_ventas = pd.json_normalize(returned_json.json)
+        print(f'pandas json: {df_ventas}')
+        print(df_ventas)
+
+        # 2. generar plot
+        # helpers.plot(df_ventas, "nombre_archivo")
+
+        # 3. generar el pdf
+        pdf = PDF.PDF_Ventas()
+
+        pdf.print_page(df_ventas)
+
+        pdf.output('SalesRepot.pdf', 'F')
+        return 200
 
 
 class ViReporteVentasConProducto(Resource):

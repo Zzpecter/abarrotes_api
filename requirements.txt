@@ -13,3 +13,7 @@ apispec-webframeworks
 tox
 mysql
 simplejson
+pandas
+numpy
+fpdf
+matplotlib
