@@ -4,6 +4,7 @@ from abarrotes_api_rest.models import CustomViews
 import pandas as pd
 import abarrotes_api_rest.helpers as helpers
 import abarrotes_api_rest.models.pdf_ventas as PDF
+from datetime import datetime
 
 
 class ViVentaClienteResource(Resource):
@@ -161,7 +162,7 @@ class ViReporteVentasSinProducto(Resource):
         # helpers.plot(df_ventas, "nombre_archivo")
 
         # 3. generar el pdf
-        pdf = PDF.PDF_Ventas()
+        pdf = PDF.PDF_Ventas(datetime.strptime(fecha_desde, "%m-%d-%Y"), datetime.strptime(fecha_hasta, "%m-%d-%Y"))
 
         pdf.print_page(df_ventas)
 
