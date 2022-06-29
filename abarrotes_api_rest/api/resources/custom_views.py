@@ -2,9 +2,10 @@ from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 from abarrotes_api_rest.models import CustomViews
 import pandas as pd
-import abarrotes_api_rest.helpers as helpers
 import abarrotes_api_rest.models.pdf_ventas as PDF
 from datetime import datetime
+import os
+from pathlib import Path
 
 
 class ViVentaClienteResource(Resource):
@@ -165,8 +166,13 @@ class ViReporteVentasSinProducto(Resource):
         pdf = PDF.PDF_Ventas(datetime.strptime(fecha_desde, "%m-%d-%Y"), datetime.strptime(fecha_hasta, "%m-%d-%Y"))
 
         pdf.print_page(df_ventas)
+        fecha_ahora = datetime.now()
+        path = os.path.expanduser(f'~\\Documents\\SistemaVentas\\Reportes\\{fecha_ahora.year}\\{fecha_ahora.month}\\')
+        filename = f"ReporteVentas_desde_{fecha_desde}_hasta_{fecha_hasta}.pdf"
 
-        pdf.output('SalesRepot.pdf', 'F')
+        Path(path).mkdir(parents=True, exist_ok=True)
+        print(path + filename)
+        pdf.output(path + filename, 'F')
         return 200
 
 
