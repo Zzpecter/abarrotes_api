@@ -30,7 +30,7 @@ class PDF_Ventas(FPDF):
         self.ln(line_height)
         self.cell(60, 1, f'Hasta: {self.hasta}', 0, line_height, 'L')
         self.ln(line_height)
-        self.cell(self.w, line_height, '', "T")
+        self.cell(self.w, line_height, '', "T", line_height)
 
     def footer(self):
         # Page numbers in the footer
@@ -45,7 +45,7 @@ class PDF_Ventas(FPDF):
         total_products = 0
         total_cash = 0.0
 
-        self.set_font("Arial", size=10)
+        self.set_font("Arial", 'B', size=10)
 
         self.cell(40, line_height, "Fecha", 1, 0)
         self.cell(60, line_height, "Producto", 1, 0)
@@ -53,6 +53,7 @@ class PDF_Ventas(FPDF):
         self.cell(15, line_height, "Cant.", 1, 0)
         self.cell(15, line_height, "Total Bs", 1, 0)
         self.ln(line_height)
+        self.set_font("Arial", size=10)
 
         print(f"Reporte Ventas - Pandas Data: {data}")
         for index, row in data.iterrows():
@@ -62,10 +63,10 @@ class PDF_Ventas(FPDF):
             self.cell(60, line_height, producto, 1, ln=0)
             presentacion = row["presentacion"] if len(row["presentacion"]) < 23 else row["presentacion"][:21] + "..."
             self.cell(40, line_height, presentacion, 1, ln=0)
-            self.cell(15, line_height, str(row["cantidad"]), 1, ln=0)
+            self.cell(15, line_height, str(int(row["cantidad"])), 1, ln=0)
             self.cell(15, line_height, str(row["total Bs"]), 1, ln=0)
 
-            total_products += row["cantidad"]
+            total_products += int(row["cantidad"])
             total_cash += row["total Bs"]
 
             self.ln(line_height)
