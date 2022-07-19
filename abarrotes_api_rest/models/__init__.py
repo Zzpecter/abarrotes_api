@@ -25,9 +25,10 @@ from abarrotes_api_rest.models.custom_views import CustomViews
 from abarrotes_api_rest.models.salida_producto import SalidaProducto
 from abarrotes_api_rest.models.descuento import Descuento
 from abarrotes_api_rest.models.pdf_ventas import PDF_Ventas
+from abarrotes_api_rest.models.pdf_ganancias import PDF_Ganancias
 
 
 __all__ = ["Usuario", "Proveedor", "Cliente", "Localidad", "Departamento", "Contacto", "ContactoCorreo",
            "ContactoTelefono", "ContactoDireccion", "UnidadPresentacion", "PresentacionProducto", "Producto", "Almacen",
            "ProductoAlmacen", "Disposicion", "Motivo", "Venta", "DetalleSalida", "DetalleEntrada", "Compra", "Factura",
-           "Nivel", "Entidad", "CustomViews", "SalidaProducto", "Descuento", "PDF_Ventas"]
+           "Nivel", "Entidad", "CustomViews", "SalidaProducto", "Descuento", "PDF_Ventas", "PDF_Ganancias"]

@@ -301,3 +301,77 @@ class CustomViews:
 
             return jsonify(r)
         return jsonify({"message": "datos de reporte no encontrados"})
+
+    def listar_reporte_ganancias_sin_producto(self, fecha_desde, fecha_hasta):
+        fecha_desde = datetime.strptime(fecha_desde, '%m-%d-%Y')
+        fecha_hasta = datetime.strptime(fecha_hasta, '%m-%d-%Y')
+        sql_query = \
+            f"SELECT * FROM `vi_reporte_ganancias` WHERE `fecha compra` between '{fecha_desde}' and '{fecha_hasta}' AND" \
+            f" `fecha venta` between '{fecha_desde}' and '{fecha_hasta}'"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['fecha compra'] = response['fecha compra'].strftime("%m-%d-%Y %H:%M:%S")
+                r[idx]['fecha venta'] = response['fecha venta'].strftime("%m-%d-%Y %H:%M:%S")
+                r[idx]['unidades compradas'] = float(response['unidades compradas'])
+                r[idx]['unidades vendidas'] = float(response['unidades vendidas'])
+                r[idx]['ganancia (vend.)'] = float(response['ganancia (vend.)'])
+                r[idx]['ganancia (total)'] = float(response['ganancia (total)'])
+
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "datos de reporte no encontrados"})
+
+    def listar_reporte_ganancias_con_producto(self, fecha_desde, fecha_hasta, id_producto):
+        fecha_desde = datetime.strptime(fecha_desde, '%m-%d-%Y')
+        fecha_hasta = datetime.strptime(fecha_hasta, '%m-%d-%Y')
+        sql_query = f"SELECT * FROM `vi_reporte_ventas` WHERE Fecha between '{fecha_desde}' and '{fecha_hasta}' and " \
+                    f"id_producto = {id_producto}"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['Fecha'] = response['Fecha'].strftime("%m-%d-%Y %H:%M:%S")
+                r[idx]['unidades compradas'] = float(response['unidades compradas'])
+                r[idx]['unidades vendidas'] = float(response['unidades vendidas'])
+                r[idx]['ganancia (vend.)'] = float(response['ganancia (vend.)'])
+                r[idx]['ganancia (total)'] = float(response['ganancia (total)'])
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "datos de reporte no encontrados"})
+
+    def listar_reporte_compras_sin_producto(self, fecha_desde, fecha_hasta):
+        fecha_desde = datetime.strptime(fecha_desde, '%m-%d-%Y')
+        fecha_hasta = datetime.strptime(fecha_hasta, '%m-%d-%Y')
+        sql_query = \
+            f"SELECT * FROM `vi_reporte_compras` WHERE Fecha between '{fecha_desde}' and '{fecha_hasta}'"
+        print(f'sending query to mySQL: {sql_query}')
+        self.cursor.execute(sql_query)
+        all = self.cursor.fetchall()
+        if len(all) > 0:
+            r = [dict((self.cursor.description[i][0], value) for i, value in enumerate(row)) for row in all]
+            print(f'response from mySQL: {r}')
+
+            # Convert datetime to string reperesentation for JSON
+            for idx, response in enumerate(r):
+                r[idx]['Fecha'] = response['Fecha'].strftime("%m-%d-%Y %H:%M:%S")
+                r[idx]['cantidad'] = float(response['cantidad'])
+                r[idx]['total Bs'] = float(response['total Bs'])
+
+            print(f'formatted response from mySQL: {r}')
+
+            return jsonify(r)
+        return jsonify({"message": "datos de reporte no encontrados"})

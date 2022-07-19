@@ -33,7 +33,8 @@ from abarrotes_api_rest.api.resources.custom_views import ViVentaClienteResource
     ViProductoPresentacionUnidadResource, ViProductoEnAlmacenList, ViProductoEnAlmacenBuscar, \
     ViVentaClientePorFechaResource, ViVentaClientePorClienteResource, ViVentaClienteById, ViDisposicionUsuarioMotivo, \
     ViCompraProveedorPorFechaResource, ViCompraProveedorById, ViCompraProveedorPorProveedorResource, \
-    ViReporteVentasConProducto, ViReporteVentasSinProducto
+    ViReporteVentasConProducto, ViReporteVentasSinProducto, ViReporteGananciasConProducto, \
+    ViReporteGananciasSinProducto, ViReporteComprasSinProducto
 from abarrotes_api_rest.api.resources.status import Status
 from abarrotes_api_rest.api.resources.salida_producto import SalidaProductoList, SalidaProductoResource
 from abarrotes_api_rest.api.resources.descuento import DescuentoResource, DescuentoList, DescuentoByProducto
@@ -58,4 +59,5 @@ __all__ = ["UserResource", "UserList", "ProveedorResource", "ProveedorList", "Cl
            "ViVentaClientePorClienteResource", "ViVentaClienteById", "DetalleSalidaByVenta",
            "ViDisposicionUsuarioMotivo", "ViCompraProveedorPorFechaResource", "ViCompraProveedorPorProveedorResource",
            "ViCompraProveedorById", "DetalleEntradaByCompra", "DescuentoResource", "DescuentoList",
-           "DescuentoByProducto", "ViReporteVentasConProducto", "ViReporteVentasSinProducto"]
+           "DescuentoByProducto", "ViReporteVentasConProducto", "ViReporteVentasSinProducto",
+           "ViReporteGananciasConProducto", "ViReporteGananciasSinProducto", "ViReporteComprasSinProducto"]

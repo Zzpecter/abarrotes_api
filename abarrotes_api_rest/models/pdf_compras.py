@@ -3,7 +3,7 @@ import datetime
 from fpdf import FPDF
 
 
-class PDF_Ventas(FPDF):
+class PDF_Compras(FPDF):
     def __init__(self, desde, hasta):
         super().__init__()
         self.WIDTH = 215
@@ -18,7 +18,7 @@ class PDF_Ventas(FPDF):
         # self.image('assets/logo.png', 10, 8, 33)
         self.set_font('Arial', 'B', 18)
         line_height = self.font_size * 2.5
-        self.cell(self.w, line_height, 'Reporte de Ventas', "B", line_height, 'C')
+        self.cell(self.w, line_height, 'Reporte de Compras', "B", line_height, 'C')
 
         self.set_font('Arial', 'B', 11)
         self.ln(line_height)
@@ -55,9 +55,9 @@ class PDF_Ventas(FPDF):
         self.ln(line_height)
         self.set_font("Arial", size=10)
 
-        print(f"Reporte Ventas - Pandas Data: {data}")
+        print(f"Reporte Compras - Pandas Data: {data}")
         for index, row in data.iterrows():
-            print(f"Reporte Ventas - Row: {row}")
+            print(f"Reporte Compras - Row: {row}")
             self.cell(40, line_height, str(row["Fecha"]), 1, ln=0)
             producto = row["producto"] if len(row["producto"]) < 35 else row["producto"][:31] + "..."
             self.cell(60, line_height, producto, 1, ln=0)

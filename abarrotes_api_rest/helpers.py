@@ -15,14 +15,14 @@ def get_documents_folder():
     return buf.value
 
 
-def plot(data: pd.DataFrame, filename: str):
+def plot(data: pd.DataFrame, y_data_column_name: str, x_data_column_name: str, filename: str):
     plt.figure(figsize=(12, 4))
     plt.grid(color='#F2F2F2', alpha=1, zorder=0)
-    plt.plot(data['Date'], data['ItemsSold'], color='#087E8B', lw=3, zorder=5)
+    plt.plot(data[x_data_column_name], data[y_data_column_name], color='#087E8B', lw=3, zorder=5)
     plt.title(f'Sales 2020/{data["Date"].dt.month[0]}', fontsize=17)
-    plt.xlabel('Period', fontsize=13)
+    plt.xlabel(x_data_column_name, fontsize=13)
     plt.xticks(fontsize=9)
-    plt.ylabel('Number of items sold', fontsize=13)
+    plt.ylabel(y_data_column_name, fontsize=13)
     plt.yticks(fontsize=9)
     plt.savefig(filename, dpi=300, bbox_inches='tight', pad_inches=0)
     plt.close()

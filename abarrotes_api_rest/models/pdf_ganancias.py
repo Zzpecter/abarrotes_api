@@ -3,7 +3,7 @@ import datetime
 from fpdf import FPDF
 
 
-class PDF_Ventas(FPDF):
+class PDF_Ganancias(FPDF):
     def __init__(self, desde, hasta):
         super().__init__()
         self.WIDTH = 215
@@ -18,7 +18,7 @@ class PDF_Ventas(FPDF):
         # self.image('assets/logo.png', 10, 8, 33)
         self.set_font('Arial', 'B', 18)
         line_height = self.font_size * 2.5
-        self.cell(self.w, line_height, 'Reporte de Ventas', "B", line_height, 'C')
+        self.cell(self.w, line_height, 'Reporte de Ganancias', "B", line_height, 'C')
 
         self.set_font('Arial', 'B', 11)
         self.ln(line_height)
@@ -47,27 +47,33 @@ class PDF_Ventas(FPDF):
 
         self.set_font("Arial", 'B', size=10)
 
-        self.cell(40, line_height, "Fecha", 1, 0)
-        self.cell(60, line_height, "Producto", 1, 0)
-        self.cell(40, line_height, "Presentacion", 1, 0)
-        self.cell(15, line_height, "Cant.", 1, 0)
-        self.cell(15, line_height, "Total Bs", 1, 0)
+        self.cell(40, line_height, "Producto", 1, 0)
+        self.cell(30, line_height, "Presentacion", 1, 0)
+        self.cell(18, line_height, "# Comprados", 1, 0)
+        self.cell(18, line_height, "# Vendidos", 1, 0)
+        self.cell(18, line_height, "Gasto T.", 1, 0)
+        self.cell(18, line_height, "Ingreso T.", 1, 0)
+        self.cell(18, line_height, "$ (vend.)", 1, 0)
+        self.cell(18, line_height, "$ (total)", 1, 0)
         self.ln(line_height)
         self.set_font("Arial", size=10)
 
-        print(f"Reporte Ventas - Pandas Data: {data}")
+        print(f"Reporte Ganancias - Pandas Data: {data}")
         for index, row in data.iterrows():
-            print(f"Reporte Ventas - Row: {row}")
-            self.cell(40, line_height, str(row["Fecha"]), 1, ln=0)
-            producto = row["producto"] if len(row["producto"]) < 35 else row["producto"][:31] + "..."
+            print(f"Reporte Ganancias - Row: {row}")
+            producto = row["producto"] if len(row["producto"]) < 25 else row["producto"][:21] + "..."
             self.cell(60, line_height, producto, 1, ln=0)
-            presentacion = row["presentacion"] if len(row["presentacion"]) < 23 else row["presentacion"][:21] + "..."
+            presentacion = row["presentacion"] if len(row["presentacion"]) < 16 else row["presentacion"][:12] + "..."
             self.cell(40, line_height, presentacion, 1, ln=0)
-            self.cell(15, line_height, str(int(row["cantidad"])), 1, ln=0)
-            self.cell(15, line_height, str(row["total Bs"]), 1, ln=0)
+            self.cell(18, line_height, str(int(row["unidades compradas"])), 1, ln=0)
+            self.cell(18, line_height, str(int(row["unidades vendidas"])), 1, ln=0)
+            self.cell(18, line_height, str(row["gasto total"]), 1, ln=0)
+            self.cell(18, line_height, str(row["ingreso total"]), 1, ln=0)
+            self.cell(18, line_height, str(row["ganancia (vend.)"]), 1, ln=0)
+            self.cell(18, line_height, str(row["ganancia (total)"]), 1, ln=0)
 
-            total_products += int(row["cantidad"])
-            total_cash += row["total Bs"]
+            total_products += int(row["unidades vendidas"])
+            total_cash += row["ganancia (total)"]
 
             self.ln(line_height)
 

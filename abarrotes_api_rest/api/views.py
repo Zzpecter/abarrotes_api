@@ -18,7 +18,8 @@ from abarrotes_api_rest.api.resources import UserResource, UserList, ProveedorRe
     ViVentaClientePorClienteResource, ViVentaClienteById, DetalleSalidaByVenta, ViDisposicionUsuarioMotivo, \
     ViCompraProveedorPorProveedorResource, ViCompraProveedorPorFechaResource, ViCompraProveedorById, \
     DetalleEntradaByCompra, DescuentoList, DescuentoResource, DescuentoByProducto, ViReporteVentasConProducto, \
-    ViReporteVentasSinProducto
+    ViReporteVentasSinProducto, ViReporteGananciasSinProducto, ViReporteGananciasConProducto,\
+    ViReporteComprasSinProducto
 
 
 
@@ -110,3 +111,6 @@ api.add_resource(DescuentoList, "/descuentos", endpoint="descuento")
 api.add_resource(DescuentoByProducto, "/descuentos/producto/<int:id_producto>", endpoint="descuento_by_producto")
 api.add_resource(ViReporteVentasSinProducto, "/reportes/ventas/<string:fecha_desde>/<string:fecha_hasta>", endpoint="reporte_venta_sin_producto")
 api.add_resource(ViReporteVentasConProducto, "/reportes/ventas/<string:fecha_desde>/<string:fecha_hasta>/<int:id_producto>", endpoint="reporte_venta_con_producto")
+api.add_resource(ViReporteGananciasSinProducto, "/reportes/ganancias/<string:fecha_desde>/<string:fecha_hasta>", endpoint="reporte_ganancia_sin_producto")
+api.add_resource(ViReporteGananciasConProducto, "/reportes/ganancias/<string:fecha_desde>/<string:fecha_hasta>/<int:id_producto>", endpoint="reporte_ganancia_con_producto")
+api.add_resource(ViReporteComprasSinProducto, "/reportes/compras/<string:fecha_desde>/<string:fecha_hasta>", endpoint="reporte_compra_sin_producto")
